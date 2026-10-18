@@ -1,6 +1,9 @@
 # Retrouver un fichier déplacé
 
-Les exports sont conservés. Le fichier de données `navigation.ts` devient `navigationItems.ts` pour éviter une ambiguïté avec le composant `Navigation.tsx` sous Windows. Les autres fichiers conservent leur nom.
+Les exports sont conservés. `navigation.ts` devient `navigationItems.ts` pour
+éviter une ambiguïté avec `Navigation.tsx` sous Windows. Les fichiers du provider
+d’authentification et du hook de copie portent désormais le nom de leur export :
+`AuthProvider.tsx` et `useCopyGameCode.ts`. Les tableaux indiquent les chemins actuels.
 
 | Ancien chemin | Nouveau chemin |
 |---|---|
@@ -10,35 +13,35 @@ Les exports sont conservés. Le fichier de données `navigation.ts` devient `nav
 | `src/components/AppLayout/AppLayout.tsx` | `src/app/layout/AppLayout.tsx` |
 | `src/components/BackgroundDecoration/BackgroundDecoration.css` | `src/app/background/BackgroundDecoration.css` |
 | `src/components/BackgroundDecoration/BackgroundDecoration.tsx` | `src/app/background/BackgroundDecoration.tsx` |
-| `src/components/Game/GameHostSummary.css` | `src/features/game/components/GameHostSummary.css` |
-| `src/components/Game/GameHostSummary.tsx` | `src/features/game/components/GameHostSummary.tsx` |
-| `src/components/Game/GameInvitationPanel.tsx` | `src/features/game/components/GameInvitationPanel.tsx` |
-| `src/components/Game/GameResultBadge.css` | `src/features/game/components/GameResultBadge.css` |
-| `src/components/Game/GameResultBadge.tsx` | `src/features/game/components/GameResultBadge.tsx` |
-| `src/components/Game/GameSymbol.css` | `src/features/game/components/GameSymbol.css` |
-| `src/components/Game/GameSymbol.tsx` | `src/features/game/components/GameSymbol.tsx` |
+| `src/components/Game/GameHostSummary.css` | `src/features/game/components/GameHostSummary/GameHostSummary.css` |
+| `src/components/Game/GameHostSummary.tsx` | `src/features/game/components/GameHostSummary/GameHostSummary.tsx` |
+| `src/components/Game/GameInvitationPanel.tsx` | `src/features/game/components/GameInvitationPanel/GameInvitationPanel.tsx` |
+| `src/components/Game/GameResultBadge.css` | `src/features/game/components/GameResultBadge/GameResultBadge.css` |
+| `src/components/Game/GameResultBadge.tsx` | `src/features/game/components/GameResultBadge/GameResultBadge.tsx` |
+| `src/components/Game/GameSymbol.css` | `src/features/game/components/GameSymbol/GameSymbol.css` |
+| `src/components/Game/GameSymbol.tsx` | `src/features/game/components/GameSymbol/GameSymbol.tsx` |
 | `src/components/Navigation/Navigation.css` | `src/app/navigation/Navigation.css` |
 | `src/components/Navigation/Navigation.tsx` | `src/app/navigation/Navigation.tsx` |
-| `src/components/Navigation/UserProfileSummary.css` | `src/features/profile/components/UserProfileSummary.css` |
-| `src/components/Navigation/UserProfileSummary.tsx` | `src/features/profile/components/UserProfileSummary.tsx` |
-| `src/components/Profile/AvatarPicker.css` | `src/features/profile/components/AvatarPicker.css` |
-| `src/components/Profile/AvatarPicker.tsx` | `src/features/profile/components/AvatarPicker.tsx` |
-| `src/components/Profile/ProfileHeader.css` | `src/features/profile/components/ProfileHeader.css` |
-| `src/components/Profile/ProfileHeader.tsx` | `src/features/profile/components/ProfileHeader.tsx` |
-| `src/components/Profile/ProfilePreview.css` | `src/features/profile/components/ProfilePreview.css` |
-| `src/components/Profile/ProfilePreview.tsx` | `src/features/profile/components/ProfilePreview.tsx` |
-| `src/components/Profile/ProfileRecentGames.css` | `src/features/profile/components/ProfileRecentGames.css` |
-| `src/components/Profile/ProfileRecentGames.tsx` | `src/features/profile/components/ProfileRecentGames.tsx` |
-| `src/components/Profile/ProfileStatistics.css` | `src/features/profile/components/ProfileStatistics.css` |
-| `src/components/Profile/ProfileStatistics.tsx` | `src/features/profile/components/ProfileStatistics.tsx` |
-| `src/components/Profile/UsernameField.css` | `src/features/profile/components/UsernameField.css` |
-| `src/components/Profile/UsernameField.tsx` | `src/features/profile/components/UsernameField.tsx` |
+| `src/components/Navigation/UserProfileSummary.css` | `src/features/profile/components/UserProfileSummary/UserProfileSummary.css` |
+| `src/components/Navigation/UserProfileSummary.tsx` | `src/features/profile/components/UserProfileSummary/UserProfileSummary.tsx` |
+| `src/components/Profile/AvatarPicker.css` | `src/features/profile/components/AvatarPicker/AvatarPicker.css` |
+| `src/components/Profile/AvatarPicker.tsx` | `src/features/profile/components/AvatarPicker/AvatarPicker.tsx` |
+| `src/components/Profile/ProfileHeader.css` | `src/features/profile/components/ProfileHeader/ProfileHeader.css` |
+| `src/components/Profile/ProfileHeader.tsx` | `src/features/profile/components/ProfileHeader/ProfileHeader.tsx` |
+| `src/components/Profile/ProfilePreview.css` | `src/features/profile/components/ProfilePreview/ProfilePreview.css` |
+| `src/components/Profile/ProfilePreview.tsx` | `src/features/profile/components/ProfilePreview/ProfilePreview.tsx` |
+| `src/components/Profile/ProfileRecentGames.css` | `src/features/profile/components/ProfileRecentGames/ProfileRecentGames.css` |
+| `src/components/Profile/ProfileRecentGames.tsx` | `src/features/profile/components/ProfileRecentGames/ProfileRecentGames.tsx` |
+| `src/components/Profile/ProfileStatistics.css` | `src/features/profile/components/ProfileStatistics/ProfileStatistics.css` |
+| `src/components/Profile/ProfileStatistics.tsx` | `src/features/profile/components/ProfileStatistics/ProfileStatistics.tsx` |
+| `src/components/Profile/UsernameField.css` | `src/features/profile/components/UsernameField/UsernameField.css` |
+| `src/components/Profile/UsernameField.tsx` | `src/features/profile/components/UsernameField/UsernameField.tsx` |
 | `src/components/ui/Button/Button.css` | `src/shared/ui/Button/Button.css` |
 | `src/components/ui/Button/Button.tsx` | `src/shared/ui/Button/Button.tsx` |
 | `src/components/ui/RadioChoice/RadioChoice.css` | `src/shared/ui/RadioChoice/RadioChoice.css` |
 | `src/components/ui/RadioChoice/RadioChoice.tsx` | `src/shared/ui/RadioChoice/RadioChoice.tsx` |
 | `src/contexts/auth-context.ts` | `src/features/auth/context/auth-context.ts` |
-| `src/contexts/AuthContext.tsx` | `src/features/auth/context/AuthContext.tsx` |
+| `src/contexts/AuthContext.tsx` | `src/features/auth/context/AuthProvider.tsx` |
 | `src/data/gameRoom.ts` | `src/features/game/data/gameRoom.ts` |
 | `src/data/games.ts` | `src/features/game/data/games.ts` |
 | `src/data/home.ts` | `src/features/home/data/home.ts` |
@@ -49,7 +52,7 @@ Les exports sont conservés. Le fichier de données `navigation.ts` devient `nav
 | `src/hooks/useAuth.ts` | `src/features/auth/hooks/useAuth.ts` |
 | `src/hooks/useAuthenticationForm.ts` | `src/features/auth/hooks/useAuthenticationForm.ts` |
 | `src/hooks/useComputerGame.ts` | `src/features/game/hooks/useComputerGame.ts` |
-| `src/hooks/useCopyGame.ts` | `src/features/game/hooks/useCopyGame.ts` |
+| `src/hooks/useCopyGame.ts` | `src/features/game/hooks/useCopyGameCode.ts` |
 | `src/hooks/useCreateGameOptions.ts` | `src/features/game/hooks/useCreateGameOptions.ts` |
 | `src/hooks/useCreateGameRoom.ts` | `src/features/game/hooks/useCreateGameRoom.ts` |
 | `src/hooks/useGameRoom.ts` | `src/features/game/hooks/useGameRoom.ts` |
@@ -64,16 +67,49 @@ Les exports sont conservés. Le fichier de données `navigation.ts` devient `nav
 | `src/pages/CreateGame/CreateGame.css` | `src/features/game/pages/CreateGame/CreateGame.css` |
 | `src/pages/CreateGame/CreateGame.tsx` | `src/features/game/pages/CreateGame/CreateGame.tsx` |
 | `src/pages/GameRoom/GameRoom.tsx` | `src/features/game/pages/GameRoom/GameRoom.tsx` |
-| `src/pages/Home/Home.css` | `src/features/home/pages/Home.css` |
-| `src/pages/Home/Home.tsx` | `src/features/home/pages/Home.tsx` |
-| `src/pages/PagePlaceholder/PagePlaceholder.css` | `src/app/pages/PagePlaceholder.css` |
-| `src/pages/PagePlaceholder/PagePlaceholder.tsx` | `src/app/pages/PagePlaceholder.tsx` |
-| `src/pages/Profile/AuthenticationForm.tsx` | `src/features/auth/components/AuthenticationForm.tsx` |
-| `src/pages/Profile/Profile.css` | `src/features/profile/pages/Profile.css` |
-| `src/pages/Profile/Profile.tsx` | `src/features/profile/pages/Profile.tsx` |
-| `src/pages/Profile/ProfileEditor.tsx` | `src/features/profile/components/ProfileEditor.tsx` |
-| `src/pages/Profile/ProfileMissing.tsx` | `src/features/profile/components/ProfileMissing.tsx` |
-| `src/pages/Profile/ProfileOverview.tsx` | `src/features/profile/components/ProfileOverview.tsx` |
+| `src/pages/Home/Home.css` | `src/features/home/pages/Home/Home.css` |
+| `src/pages/Home/Home.tsx` | `src/features/home/pages/Home/Home.tsx` |
+| `src/pages/PagePlaceholder/PagePlaceholder.css` | `src/app/pages/PagePlaceholder/PagePlaceholder.css` |
+| `src/pages/PagePlaceholder/PagePlaceholder.tsx` | `src/app/pages/PagePlaceholder/PagePlaceholder.tsx` |
+| `src/pages/Profile/AuthenticationForm.tsx` | `src/features/auth/components/AuthenticationForm/AuthenticationForm.tsx` |
+| `src/pages/Profile/Profile.css` | `src/features/profile/pages/Profile/Profile.css` |
+| `src/pages/Profile/Profile.tsx` | `src/features/profile/pages/Profile/Profile.tsx` |
+| `src/pages/Profile/ProfileEditor.tsx` | `src/features/profile/components/ProfileEditor/ProfileEditor.tsx` |
+| `src/pages/Profile/ProfileMissing.tsx` | `src/features/profile/components/ProfileMissing/ProfileMissing.tsx` |
+| `src/pages/Profile/ProfileOverview.tsx` | `src/features/profile/components/ProfileOverview/ProfileOverview.tsx` |
 | `src/router.tsx` | `src/app/router.tsx` |
 | `src/routes.ts` | `src/app/routes.ts` |
 | `src/utils/username.ts` | `src/features/profile/utils/username.ts` |
+
+## Harmonisation des composants et des pages
+
+| Emplacement précédent | Emplacement actuel |
+|---|---|
+| `src/features/profile/components/AvatarPicker.css` | `src/features/profile/components/AvatarPicker/AvatarPicker.css` |
+| `src/features/profile/components/AvatarPicker.tsx` | `src/features/profile/components/AvatarPicker/AvatarPicker.tsx` |
+| `src/features/profile/components/ProfileAvatar.css` | `src/features/profile/components/ProfileAvatar/ProfileAvatar.css` |
+| `src/features/profile/components/ProfileAvatar.tsx` | `src/features/profile/components/ProfileAvatar/ProfileAvatar.tsx` |
+| `src/features/profile/components/ProfileEditor.tsx` | `src/features/profile/components/ProfileEditor/ProfileEditor.tsx` |
+| `src/features/profile/components/ProfileHeader.css` | `src/features/profile/components/ProfileHeader/ProfileHeader.css` |
+| `src/features/profile/components/ProfileHeader.tsx` | `src/features/profile/components/ProfileHeader/ProfileHeader.tsx` |
+| `src/features/profile/components/ProfileMissing.tsx` | `src/features/profile/components/ProfileMissing/ProfileMissing.tsx` |
+| `src/features/profile/components/ProfileOverview.tsx` | `src/features/profile/components/ProfileOverview/ProfileOverview.tsx` |
+| `src/features/profile/components/ProfilePreview.css` | `src/features/profile/components/ProfilePreview/ProfilePreview.css` |
+| `src/features/profile/components/ProfilePreview.tsx` | `src/features/profile/components/ProfilePreview/ProfilePreview.tsx` |
+| `src/features/profile/components/ProfileRecentGames.css` | `src/features/profile/components/ProfileRecentGames/ProfileRecentGames.css` |
+| `src/features/profile/components/ProfileRecentGames.tsx` | `src/features/profile/components/ProfileRecentGames/ProfileRecentGames.tsx` |
+| `src/features/profile/components/ProfileStatistics.css` | `src/features/profile/components/ProfileStatistics/ProfileStatistics.css` |
+| `src/features/profile/components/ProfileStatistics.tsx` | `src/features/profile/components/ProfileStatistics/ProfileStatistics.tsx` |
+| `src/features/profile/components/UsernameField.css` | `src/features/profile/components/UsernameField/UsernameField.css` |
+| `src/features/profile/components/UsernameField.tsx` | `src/features/profile/components/UsernameField/UsernameField.tsx` |
+| `src/features/profile/components/UserProfileSummary.css` | `src/features/profile/components/UserProfileSummary/UserProfileSummary.css` |
+| `src/features/profile/components/UserProfileSummary.tsx` | `src/features/profile/components/UserProfileSummary/UserProfileSummary.tsx` |
+| `src/features/auth/components/AuthenticationForm.tsx` | `src/features/auth/components/AuthenticationForm/AuthenticationForm.tsx` |
+| `src/features/home/pages/Home.css` | `src/features/home/pages/Home/Home.css` |
+| `src/features/home/pages/Home.tsx` | `src/features/home/pages/Home/Home.tsx` |
+| `src/features/profile/pages/Profile.css` | `src/features/profile/pages/Profile/Profile.css` |
+| `src/features/profile/pages/Profile.tsx` | `src/features/profile/pages/Profile/Profile.tsx` |
+| `src/app/pages/PagePlaceholder.css` | `src/app/pages/PagePlaceholder/PagePlaceholder.css` |
+| `src/app/pages/PagePlaceholder.tsx` | `src/app/pages/PagePlaceholder/PagePlaceholder.tsx` |
+| `src/features/auth/context/AuthContext.tsx` | `src/features/auth/context/AuthProvider.tsx` |
+| `src/features/game/hooks/useCopyGame.ts` | `src/features/game/hooks/useCopyGameCode.ts` |

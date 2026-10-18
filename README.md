@@ -71,9 +71,16 @@ configuration Supabase fictive et ne déploie rien.
 - `src/shared/ui` contient les composants génériques, comme `Button` et `RadioChoice`.
 - `src/shared/lib` contient le client Supabase.
 
+Chaque composant et chaque page de fonctionnalité possède son sous-dossier avec
+ses styles et ses tests éventuels. Les hooks, données et règles restent regroupés
+par rôle dans leur fonctionnalité.
+
 Le classement est encore provisoire. L’historique des parties est chargé depuis Supabase.
 
 Le [guide de l’arborescence](docs/ARCHITECTURE.md) explique où chercher chaque fichier et comment ranger les prochains composants.
+
+Le [cycle de développement](docs/DEVELOPMENT.md) décrit les branches, les commits,
+les vérifications et la revue des pull requests.
 
 La [convention des imports](docs/IMPORTS.md) explique leur ordre et leur correction automatique dans VS Code.
 

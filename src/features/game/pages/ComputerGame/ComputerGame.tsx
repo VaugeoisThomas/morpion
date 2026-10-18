@@ -1,5 +1,5 @@
 import Button from '../../../../shared/ui/Button/Button'
-import GameBoard from '../../components/GameBoard'
+import GameBoard from '../../components/GameBoard/GameBoard'
 import { useComputerGame } from '../../hooks/useComputerGame'
 import { useSaveFinishedGame } from '../../hooks/useSaveFinishedGame'
 

@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { AuthProvider } from '../features/auth/context/AuthContext'
-import Home from '../features/home/pages/Home'
+import { AuthProvider } from '../features/auth/context/AuthProvider'
+import Home from '../features/home/pages/Home/Home'
 import AppLayout from './layout/AppLayout'
-import PagePlaceholder from './pages/PagePlaceholder'
+import PagePlaceholder from './pages/PagePlaceholder/PagePlaceholder'
 import { paths } from './routes'
 
 /**
@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
             {
                 path: paths.profile.slice(1),
                 lazy: async () => {
-                    const { default: Component } = await import('../features/profile/pages/Profile')
+                    const { default: Component } = await import('../features/profile/pages/Profile/Profile')
                     return { Component }
                 },
             },

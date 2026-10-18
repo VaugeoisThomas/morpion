@@ -1,82 +1,96 @@
 # Se repérer dans le projet
 
-Le code est regroupé par fonctionnalité. Pour travailler sur le profil, commence dans `src/features/profile` ; pour une partie, dans `src/features/game`.
+Commencer dans `features/game` pour le jeu, `features/profile` pour le profil
+et `features/auth` pour la connexion.
 
-## Arborescence
+## Les trois zones de code
+
+| Dossier | Rôle |
+|---|---|
+| `src/app` | Routes, navigation, fond, styles globaux et mise en page. |
+| `src/features` | Fonctionnalités : accueil, authentification, profil et jeu. |
+| `src/shared` | Composants génériques et client Supabase partagés. |
+
+`src/main.tsx` monte React. `app/router.tsx` associe les URL aux pages et
+`app/routes.ts` centralise les chemins.
+
+## Organisation d’une fonctionnalité
 
 ```text
-src/
-├── main.tsx                     # Démarrage de React
-├── app/
-│   ├── App.tsx                  # Affichage du routeur
-│   ├── App.css                  # Police, couleurs et styles globaux
-│   ├── router.tsx               # Association des URL aux pages
-│   ├── routes.ts                # Chemins utilisés par les liens
-│   ├── layout/                  # AppLayout et sa grille
-│   ├── navigation/              # Menu, liens et ouverture du menu mobile
-│   ├── background/              # Fond commun à toutes les pages
-│   └── pages/                   # PagePlaceholder : écrans provisoires
-├── features/
-│   ├── home/
-│   │   ├── pages/               # Home.tsx et Home.css
-│   │   └── data/                # Raccourcis de l’accueil
-│   ├── auth/
-│   │   ├── components/          # AuthenticationForm
-│   │   ├── context/             # AuthProvider et définition du contexte
-│   │   └── hooks/               # useAuth et useAuthenticationForm
-│   ├── profile/
-│   │   ├── pages/               # Page Profile et son CSS
-│   │   ├── components/          # Éditeur, aperçu, avatar, résumé du compte…
-│   │   ├── hooks/               # Modification et récupération du profil
-│   │   ├── data/                # Catalogue d’avatars, types et accès aux profils
-│   │   └── utils/               # Validation du pseudo
-│   └── game/
-│       ├── pages/
-│       │   ├── ComputerGame/    # Partie contre l’ordinateur
-│       │   ├── CreateGame/      # Création d’une partie
-│       │   └── GameRoom/        # Salle d’attente
-│       ├── components/          # Symboles, résultat, résumé de l’hôte…
-│       ├── hooks/               # État des parties, création, copie et historique
-│       ├── data/                # Lecture et enregistrement dans Supabase
-│       └── model/               # Règles du morpion et types des salles
-└── shared/
-    ├── ui/
-    │   ├── Button/              # Bouton d’action générique
-    │   └── RadioChoice/         # Choix radio générique
-    └── lib/                     # Client Supabase
+features/game/
+  pages/
+    ComputerGame/                  # Partie contre l’ordinateur
+    CreateGame/                    # Création de salle
+    JoinGame/                      # Rejoindre une salle
+    GameRoom/                      # Attente et partie multijoueur
+  components/
+    GameBoard/
+      GameBoard.tsx
+      GameBoard.css
+      GameBoard.test.tsx
+    GameSymbol/
+      GameSymbol.tsx
+      GameSymbol.css
+    ...
+  hooks/                           # État React et actions de l’interface
+  data/                            # Accès Supabase
+  model/                           # Types, règles et tests des fonctions pures
 ```
 
-## Où ranger un nouveau fichier ?
+Chaque page et chaque composant possède son dossier nommé en PascalCase.
+Le code, les styles et les tests éventuels restent ensemble. Cette convention
+s’applique aussi au profil, à l’authentification et aux composants génériques.
+L’accueil se trouve dans `features/home/pages/Home` ; le profil dans
+`features/profile/pages/Profile`.
 
-- **Une page complète** : dans `features/<fonctionnalité>/pages`.
-- **Un élément d’interface lié au jeu ou au profil** : dans les `components` de cette fonctionnalité.
-- **Un élément générique sans connaissance du jeu ou du compte** : dans `shared/ui`.
-- **Une logique React avec état ou effets** : dans les `hooks` de la fonctionnalité.
-- **Les règles du jeu sans React ni Supabase** : dans `features/game/model`.
-- **Une requête Supabase** : dans le dossier `data` de la fonctionnalité.
-- **Un changement du menu ou du fond commun** : dans `app`.
+Les dossiers `app/layout`, `app/navigation` et `app/background` regroupent déjà
+chacun une responsabilité commune au site. Ils restent plats.
 
-Les fichiers TSX et CSS d’un composant restent côte à côte. Les classes BEM et le rendu ne changent pas avec leur emplacement. La page conserve les styles de placement ; le composant conserve ses styles internes.
+## Où ajouter un fichier ?
 
-Un composant de profil utilisé dans le menu, comme `UserProfileSummary`, reste dans `features/profile/components` : son rôle concerne le compte, même si plusieurs pages l’affichent.
+| Besoin | Emplacement |
+|---|---|
+| Écran associé à une route | `features/<fonctionnalité>/pages/<Page>/` |
+| Composant propre au jeu ou au profil | `features/<fonctionnalité>/components/<Composant>/` |
+| Contrôle réutilisable sans logique métier | `shared/ui/<Composant>/` |
+| État React ou effets | `features/<fonctionnalité>/hooks/` |
+| Règles du jeu et types | `features/game/model/` |
+| Requête Supabase | `features/<fonctionnalité>/data/` |
+| Validation du pseudo | `features/profile/utils/username.ts` |
+| Contexte d’authentification | `features/auth/context/` |
 
-Les imports restent relatifs. `./` désigne le dossier courant et chaque `../` remonte d’un dossier. Les imports entre fonctionnalités sont possibles : l’accueil et le profil affichent par exemple l’historique fourni par `features/game`.
+Les hooks portent le nom de la fonction exportée : `useCopyGameCode.ts`, par
+exemple. `AuthProvider.tsx` fournit le contexte défini dans `auth-context.ts`.
+Un composant reste dans sa fonctionnalité même si une autre l’utilise : le résumé
+du compte dans le menu appartient ainsi au profil.
 
-## Extraction en cours
+## Imports, styles et tests
 
-`features/game/components/GameInvitationPanel.tsx` est le fichier préparé pour la prochaine extraction. Le panneau fonctionne encore dans `features/game/pages/CreateGame/CreateGame.tsx` : son extraction n’a pas été effectuée lors du rangement.
+- Importer directement le fichier, par exemple `components/GameBoard/GameBoard`.
+- Garder les imports relatifs sans fichiers `index.ts` de réexport.
+- La page gère le placement ; le composant gère ses styles internes, en BEM et mobile first.
+- Placer `Nom.test.ts` ou `Nom.test.tsx` près du fichier testé.
+- Regrouper les tests par fonction ou composant avec `describe`.
+- Extraire les données réellement répétées dans des fonctions de préparation qui
+  créent un nouvel objet à chaque appel.
+- Marquer un exercice non implémenté avec `test.todo` plutôt que laisser un fichier vide.
 
-## Fichiers hors de src
+## Hors du code source
 
-- `public/figma` : SVG utilisés par l’interface ; leurs URL publiques restent inchangées.
-- `public/fonts` : police Inter locale et sa licence.
-- `supabase/migrations` : structure de la base de données et règles d’accès.
-- `docs` : explications du projet et table des déplacements.
-- Fichiers de configuration à la racine : Vite, TypeScript et ESLint.
-- `dist` et `node_modules` : dossiers générés ; ne pas y modifier le code source.
+| Dossier | Contenu |
+|---|---|
+| `public/avatars` | Images des avatars. |
+| `public/figma` | Assets SVG du design. |
+| `public/fonts` | Police locale et sa licence. |
+| `supabase/migrations` | Migrations SQL versionnées ; conserver les noms et l’ordre. |
+| `.github/workflows` | Vérifications automatiques du dépôt. |
+| `docs` | Guides du projet. |
+| `dist`, `node_modules` | Dossiers générés, exclus de Git. |
 
-Le [tableau des déplacements](FILE_MOVES.md) permet de retrouver un fichier à partir de son ancien chemin.
+## Guides complémentaires
 
-## Avatars
-
-Le catalogue pixel art et le composant commun sont décrits dans le [guide des avatars](AVATARS.md), avec la migration nécessaire pour autoriser le tigre dans Supabase.
+- [Cycle de développement](DEVELOPMENT.md)
+- [Imports](IMPORTS.md)
+- [CSS mobile first](RESPONSIVE.md)
+- [Avatars](AVATARS.md)
+- [Ancien et nouvel emplacement des fichiers](FILE_MOVES.md)
