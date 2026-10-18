@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "check": "npm run lint && npm run test -- --run && npm run build"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",
