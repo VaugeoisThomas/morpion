@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import UserProfileSummary from '../../features/profile/components/UserProfileSummary';
+import UserProfileSummary from '../../features/profile/components/UserProfileSummary/UserProfileSummary';
 import Button from '../../shared/ui/Button/Button';
 import BackgroundDecoration from '../background/BackgroundDecoration';
 import { paths } from '../routes';

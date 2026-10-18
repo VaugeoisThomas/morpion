@@ -6,9 +6,9 @@ import { paths } from "../../../../app/routes";
 import Button from '../../../../shared/ui/Button/Button'
 import { useAuth } from "../../../auth/hooks/useAuth";
 import { avatars } from "../../../profile/data/profile";
-import GameHostSummary from '../../components/GameHostSummary';
-import GameInvitationPanel from '../../components/GameInvitationPanel'
-import GameOptionsForm from '../../components/GameOptionsForm';
+import GameHostSummary from '../../components/GameHostSummary/GameHostSummary';
+import GameInvitationPanel from '../../components/GameInvitationPanel/GameInvitationPanel'
+import GameOptionsForm from '../../components/GameOptionsForm/GameOptionsForm';
 import { useCreateGameOptions } from "../../hooks/useCreateGameOptions";
 import { useCreateRoom } from "../../hooks/useCreateGameRoom";
 

@@ -7,7 +7,7 @@ variables de `src/app/App.css`.
 
 ## Exemple : le statut de la salle
 
-Dans `src/features/game/components/GameRoomStatus.css`, le statut est disposé en
+Dans `src/features/game/components/GameRoomStatus/GameRoomStatus.css`, le statut est disposé en
 colonne par défaut : l’indicateur apparaît au-dessus du message. À partir de
 601 pixels, une media query le dispose en ligne, augmente l’espacement supérieur
 et la taille du texte.
