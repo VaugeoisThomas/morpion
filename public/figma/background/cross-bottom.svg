@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="77.6515" height="77.6515" viewBox="0 0 77.6515 77.6515" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#glow)">
+<path d="M21.5457 21.5457L56.1057 56.1057M56.1057 21.5457L21.5457 56.1057" stroke="#0073FF" stroke-width="7.56" stroke-linecap="square"/>
+</g>
+<defs>
+<filter id="glow" x="0" y="0" width="77.6515" height="77.6515" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feDropShadow dx="0" dy="0" stdDeviation="3.11" flood-color="#0073FF" flood-opacity="0.6"/>
+</filter>
+</defs>
+</svg>

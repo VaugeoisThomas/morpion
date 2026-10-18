@@ -1,0 +1,151 @@
+.create-game {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.create-game__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.create-game__back:hover {
+  color: var(--secondary);
+}
+
+.create-game__options {
+  align-self: stretch;
+  grid-area: options;
+}
+
+.create-game__host {
+  grid-area: host;
+}
+
+.create-game__create-button:hover {
+  background: #00918d;
+}
+
+.create-game__layout {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+      "host"
+      "options"
+      "sidebar";
+  gap: 16px;
+}
+
+.create-game__invite {
+  display: none;
+}
+
+.create-game__sidebar {
+  display: grid;
+  min-width: 0;
+  grid-area: sidebar;
+  gap: 10px;
+}
+
+.create-game__title {
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.create-game__header {
+  margin: 28px 0 16px;
+  text-align: center;
+}
+
+.create-game__subtitle {
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.create-game__create-button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+  min-height: 42px;
+  padding: 10px;
+  gap: 8px;
+  background: #00666d;
+  border: 1px solid rgb(0 200 255 / 13%);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.create-game__note {
+  color: var(--text-muted);
+  font-size: 10px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media (min-width: 481px) {
+  .create-game__invite {
+    display: block;
+  }
+
+  .create-game__subtitle {
+    font-size: inherit;
+    line-height: normal;
+  }
+
+  .create-game__header {
+    text-align: start;
+    margin: 28px 0;
+  }
+
+  .create-game__title {
+    margin-bottom: 8px;
+    font-size: 2rem;
+  }
+
+  .create-game__layout {
+    display: grid;
+    gap: 24px;
+  }
+
+  .create-game__sidebar {
+    display: grid;
+    gap: 18px;
+  }
+
+  .create-game__create-button {
+    padding: 9px 16px;
+    display: flex;
+    min-height: 52px;
+    gap: 10px;
+    background: #007b7b;
+    border: 0;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 700;
+  }
+
+  .create-game__note {
+    text-align: start;
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 701px) {
+  .create-game__layout {
+    grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr);
+    grid-template-areas:
+    "options host"
+    "options sidebar";
+  }
+}

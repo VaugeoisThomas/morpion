@@ -1,0 +1,535 @@
+.home {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.home__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -24px;
+  text-align: center;
+  gap: 3px;
+  margin-bottom: 22px;
+}
+
+.home__brand-mark {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  gap: 0;
+}
+
+.home__title {
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 30px;
+  text-shadow: 0 0 12px rgb(88 175 255 / 38%);
+}
+
+.home__subtitle {
+  max-width: 300px;
+  margin-top: 0;
+  color: var(--text-muted);
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.home__quick-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 0;
+  gap: 8px;
+}
+
+.home__mobile-tools {
+  display: grid;
+  gap: 22px;
+  margin: 22px 0 20px;
+}
+
+.home__quick-link {
+  --quick-accent: #06378f;
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+  text-decoration: none;
+  border: 1px solid #1b2b4f;
+  border-radius: var(--radius-card);
+  transition: border-color 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+  min-height: 53px;
+  padding: 13px;
+  gap: 12px;
+}
+
+.home__quick-link:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.2);
+  border-color: var(--quick-accent);
+}
+
+.home__quick-link--online {
+  --quick-accent: #06378f;
+  --quick-icon-color: #73c8ff;
+  background: #06378f;
+  border-color: rgb(0 200 255 / 13%);
+}
+
+.home__quick-link--computer {
+  --quick-accent: #392099;
+  --quick-icon-color: #c3b8ff;
+  background: #392099;
+  border-color: rgb(197 138 255 / 13%);
+}
+
+.home__quick-link--new {
+  --quick-accent: #00666d;
+  --quick-icon-color: #6cddd0;
+  background: #00666d;
+  border-color: rgb(0 214 160 / 13%);
+}
+
+.home__quick-link--link {
+  --quick-accent: #925009;
+  --quick-icon-color: #ffd08a;
+  background: #925009;
+  border-color: rgb(255 216 150 / 13%);
+}
+
+.home__quick-icon {
+  display: grid;
+  place-items: center;
+  color: var(--quick-icon-color);
+  background: transparent;
+  width: 23px;
+  height: 23px;
+  flex: 0 0 23px;
+}
+
+.home__quick-copy {
+  display: grid;
+  gap: 0;
+  min-width: 0;
+  flex: 1;
+}
+
+.home__quick-title {
+  font-size: 12px;
+  line-height: normal;
+}
+
+.home__quick-description {
+  display: none;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #d2dbee;
+}
+
+.home__quick-arrow {
+  display: grid;
+  margin-left: auto;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.home__panels {
+  display: none;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.home__panel {
+  min-width: 0;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  background: var(--surface-background);
+  border-color: var(--border-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  padding: 20px;
+}
+
+.home__panel-header,
+.home__panel-title {
+  display: flex;
+  align-items: center;
+}
+
+.home__panel-header {
+  min-height: 20px;
+  margin-bottom: 16px;
+}
+
+.home__panel-title {
+  gap: 10px;
+}
+
+.home__panel-heading {
+  font-weight: 700;
+  font-size: clamp(14px, 0.9vw, 16px);
+  line-height: 20px;
+}
+
+.home__panel-icon {
+  color: #ffb51b;
+}
+
+.home__ranking-list,
+.home__games-list {
+  display: grid;
+}
+
+.home__games-empty {
+  padding: 12px 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 42ch;
+}
+
+.home__ranking-empty {
+  color: var(--text-muted);
+  margin: 0 auto;
+  max-width: 42ch;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.home__ranking-row,
+.home__game-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  border-bottom: 1px solid #1b2b4f;
+}
+
+.home__rank-position {
+  width: 12px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.home__rank-avatar {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  place-items: center;
+  color: var(--secondary);
+  background: var(--surface-raised);
+  border: 1px solid var(--secondary);
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.home__rank-player {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.home__rank-points {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.home__panel-link {
+  display: inline-block;
+  color: var(--secondary);
+  text-decoration: none;
+  align-self: flex-start;
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.home__panel-link:hover {
+  text-decoration: underline;
+}
+
+.home__game-opponent {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  grid-column: 2;
+  grid-row: 1;
+  text-align: center;
+  font-size: 12px;
+}
+
+.home__game-time {
+  color: var(--text-muted);
+  white-space: nowrap;
+  grid-column: 3;
+  grid-row: 1;
+  font-size: 11px;
+  text-align: right;
+}
+
+.home__game-result {
+  padding: 0;
+  background: transparent;
+  grid-column: 1;
+  grid-row: 1;
+  font-weight: 400;
+  --game-result-gap: 5px;
+  --game-result-marker-size: 7px;
+  font-size: 12px;
+  min-width: 0;
+}
+
+.home__game-result--win {
+  --game-result-win: var(--success);
+}
+
+.home__game-result--loss {
+  --game-result-loss: var(--tertiary);
+}
+
+.home__profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-primary);
+  border-radius: 8px;
+  text-decoration: none;
+  min-height: 67px;
+  padding: 13px;
+  background: var(--surface-background);
+}
+
+.home__profile .user-profile-summary {
+  gap: 12px;
+}
+
+.home__profile .user-profile-summary__username {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.home__profile .user-profile-summary__info {
+  line-height: normal;
+}
+
+.home__profile .user-profile-summary__status-dot {
+  background: var(--success);
+}
+
+.home__profile .user-profile-summary--empty {
+  min-height: 41px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.home__profile .user-profile-summary__welcome-avatar {
+  --profile-avatar-size: 41px;
+  --profile-avatar-scale: 0.854167;
+}
+
+.home__profile .user-profile-summary__welcome-copy {
+  gap: 4px;
+  line-height: normal;
+}
+
+.home__profile .user-profile-summary__welcome-title {
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.home__profile .user-profile-summary__welcome-subtitle {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.home__mobile-navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.home__mobile-navigation-link {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  min-height: 20px;
+  font-size: 11px;
+  gap: 4px;
+}
+
+.home__mobile-navigation-icon {
+  display: block;
+  width: 11px;
+  height: 11px;
+  flex: 0 0 11px;
+  color: #ffb51b;
+}
+
+.home__mobile-navigation-icon img {
+  display: block;
+  max-width: none;
+  transform: scale(0.55);
+  transform-origin: top left;
+}
+
+.home__brand-x,
+.home__brand-o {
+  display: block;
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+.home__brand-x img {
+  position: absolute;
+  left: -5.48px;
+  top: -5.48px;
+  max-width: none;
+}
+
+.home__brand-o img {
+  position: absolute;
+  left: -3.75px;
+  top: -3.75px;
+  max-width: none;
+}
+
+@media (min-width: 601px) {
+  .home__header {
+    margin-top: 0;
+    gap: 3px;
+    margin-bottom: 28px;
+  }
+
+  .home__brand-mark {
+    height: 33px;
+  }
+
+  .home__title {
+    font-size: 48px;
+    line-height: 58px;
+  }
+
+  .home__subtitle {
+    max-width: none;
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .home__quick-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    column-gap: 24px;
+    row-gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .home__mobile-tools {
+    display: none;
+  }
+
+  .home__quick-link {
+    min-height: 94px;
+    padding: 22px;
+    gap: 22px;
+    border-radius: var(--radius-card);
+  }
+
+  .home__quick-icon {
+    width: 35px;
+    height: 35px;
+    flex-basis: 35px;
+  }
+
+  .home__quick-copy {
+    gap: 5px;
+  }
+
+  .home__quick-title {
+    font-size: 18px;
+  }
+
+  .home__quick-description {
+    display: block;
+    font-size: 12px;
+  }
+
+  .home__panels {
+    display: grid;
+    gap: 24px;
+  }
+
+  .home__panel {
+    padding: 20px;
+  }
+
+  .home__ranking-row,
+  .home__game-row {
+    gap: 10px;
+  }
+
+  .home__brand-x,
+  .home__brand-o {
+    width: 33px;
+    height: 33px;
+  }
+
+  .home__brand-x img {
+    left: -7.23px;
+    top: -7.23px;
+  }
+
+  .home__brand-o img {
+    left: -4.95px;
+    top: -4.95px;
+  }
+}
+
+@media (min-width: 761px) {
+  .home__panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}
+
+.home__quick-icon img,
+.home__quick-arrow img {
+  display: block;
+  max-width: none;
+}
+
+.home__mobile-navigation-link:last-child {
+  justify-content: flex-end;
+}
+
+.home__game-row {
+  display: grid;
+  border-bottom: 0;
+  grid-template-columns: minmax(80px, 1fr) minmax(0, 1fr) auto;
+  min-height: 24px;
+  gap: 12px;
+}
+
+.home__games-list {
+  gap: 8px;
+}
+
+.home__ranking-list {
+  flex: 1;
+  min-height: 90px;
+  align-content: center;
+}

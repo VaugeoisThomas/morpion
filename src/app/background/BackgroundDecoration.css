@@ -1,0 +1,107 @@
+.background-decoration {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  background: var(--page-background);
+}
+
+.background-decoration img {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+.background-decoration__circle--left {
+  left: calc(3.5% - 5.1px);
+  top: calc(59% - 5.1px);
+  opacity: 0.2;
+}
+
+.background-decoration__circle--right {
+  left: calc(90% - 7.8px);
+  top: calc(12% - 7.8px);
+  opacity: 0.35;
+}
+
+.background-decoration__cross--left {
+  left: 8.1667%;
+  top: 33.772%;
+  opacity: 0.22;
+  transform: translate(-50%, -50%) rotate(-15deg);
+}
+
+.background-decoration__cross--bottom {
+  left: calc(14% - 11.82575px);
+  top: calc(82% - 11.82575px);
+  opacity: 0.15;
+}
+
+.background-decoration__line {
+  position: absolute;
+  height: 9px;
+}
+
+.background-decoration__line--blue {
+  left: 91.8265%;
+  top: 67.3867%;
+  width: 80px;
+  background: var(--primary);
+  opacity: 0.24;
+  transform: translate(-50%, -50%) rotate(-39deg);
+  box-shadow: 0 0 15px rgb(0 115 255 / 56%);
+}
+
+.background-decoration__line--purple {
+  left: 4.3415%;
+  top: 83.3294%;
+  width: 76px;
+  background: #6634ea;
+  opacity: 0.25;
+  transform: translate(-50%, -50%) rotate(36deg);
+  box-shadow: 0 0 15px rgb(171 0 255 / 56%);
+}
+
+.background-decoration__halo {
+  left: 56.5%;
+  top: 57.5%;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
+.app--home .background-decoration__cross--left {
+  left: 17.75%;
+}
+
+.app--home .background-decoration__line--blue {
+  left: 99.6%;
+}
+
+.app--home .background-decoration__line--purple {
+  left: 10.78%;
+}
+
+@media (min-width: 601px) {
+  .background-decoration__halo {
+    transform: translate(-50%, -50%);
+  }
+
+  .app--home .background-decoration__cross--left {
+    left: 8.1667%;
+  }
+
+  .app--home .background-decoration__line--blue {
+    left: 91.8265%;
+  }
+
+  .app--home .background-decoration__line--purple {
+    left: 4.3415%;
+  }
+}
+
+@media (min-width: 901px) {
+  .background-decoration--menu {
+    display: none;
+  }
+}

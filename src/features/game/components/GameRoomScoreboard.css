@@ -1,0 +1,27 @@
+.game-room-scoreboard {
+  display: grid;
+  width: 100%;
+  max-width: 480px;
+  gap: 8px;
+  margin: 24px auto 0;
+  padding: 16px;
+  background: var(--surface-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  text-align: center;
+}
+
+.game-room-scoreboard__round {
+  color: var(--text-muted);
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+}
+
+.game-room-scoreboard__score {
+  color: var(--text-primary);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}

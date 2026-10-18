@@ -1,0 +1,30 @@
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  max-width: 480px;
+  margin: 24px auto 0;
+}
+
+.game-board__cell {
+  display: grid;
+  min-width: 0;
+  aspect-ratio: 1;
+  place-items: center;
+  padding: 0;
+  color: var(--text-primary);
+  background: var(--surface-background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.game-board__cell:hover:not(:disabled) {
+  background: var(--surface-raised);
+  border-color: var(--secondary);
+}
+
+.game-board__cell:disabled {
+  cursor: default;
+}

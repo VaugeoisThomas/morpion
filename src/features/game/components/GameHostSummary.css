@@ -1,0 +1,52 @@
+.game-host-summary {
+  display: flex;
+  align-items: center;
+  background: var(--surface-background);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  min-height: 58px;
+  padding: 10px;
+  gap: 12px;
+}
+
+.game-host-summary__avatar {
+  --profile-avatar-size: 36px;
+  --profile-avatar-scale: 0.75;
+}
+
+.game-host-summary__name {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.game-host-summary__status {
+  margin-top: 4px;
+  color: var(--success);
+  font-size: 10px;
+}
+
+@media (min-width: 481px) {
+  .game-host-summary__name {
+    font-size: inherit;
+    font-weight: bolder;
+  }
+
+  .game-host-summary {
+    min-height: 86px;
+    gap: 14px;
+    padding: 14px 18px;
+  }
+
+  .game-host-summary__avatar {
+    --profile-avatar-size: 52px;
+    --profile-avatar-scale: 1.083333;
+  }
+
+  .game-host-summary__status {
+    margin-top: 5px;
+    color: #00c8a0;
+    font-size: 0.85rem;
+  }
+}

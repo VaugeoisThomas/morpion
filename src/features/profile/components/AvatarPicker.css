@@ -1,0 +1,51 @@
+.avatar-picker {
+  margin-top: 1.5rem;
+}
+
+.avatar-picker__title {
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.avatar-picker__options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 12px;
+}
+
+.avatar-picker__option {
+  display: flex;
+  flex: 0 0 calc((100% - 24px) / 3);
+  min-width: 0;
+  min-height: 96px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 6px;
+  appearance: none;
+  color: #a5b3d2;
+  background: var(--page-background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.avatar-picker__option:hover {
+  border-color: var(--secondary);
+}
+
+.avatar-picker__option--selected {
+  color: var(--secondary);
+  background: var(--surface-active);
+  border-color: var(--secondary);
+}
+
+.avatar-picker__label {
+  color: inherit;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}

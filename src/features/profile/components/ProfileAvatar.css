@@ -1,0 +1,43 @@
+.profile-avatar {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--profile-avatar-size, 48px);
+  height: var(--profile-avatar-size, 48px);
+  overflow: hidden;
+  vertical-align: middle;
+  background: #144973;
+  border: 2px solid var(--secondary);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgb(0 191 255 / 31%);
+}
+
+.profile-avatar__image {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  max-width: none;
+  transform: translate(-50%, -50%) scale(var(--profile-avatar-scale, 1));
+}
+
+:where(.profile-avatar--small) {
+  --profile-avatar-size: 36px;
+  --profile-avatar-scale: 0.75;
+}
+
+:where(.profile-avatar--large) {
+  --profile-avatar-size: 64px;
+  --profile-avatar-scale: 1.333333;
+}
+
+:where(.profile-avatar--preview) {
+  --profile-avatar-size: 88px;
+  --profile-avatar-scale: 1.833333;
+}
+
+.profile-avatar--muted {
+  background: #0a1c40;
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+}

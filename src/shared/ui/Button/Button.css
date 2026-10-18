@@ -1,0 +1,54 @@
+:where(.button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 9px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  font: inherit;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: background-color 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
+  min-height: var(--control-height);
+  font-size: var(--font-size-button);
+  line-height: 18px;
+}
+
+:where(.button--primary) {
+  color: var(--text-primary);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+:where(.button--secondary) {
+  color: var(--text-primary);
+  background: var(--surface-raised);
+  border-color: var(--border-color);
+}
+
+:where(.button--text) {
+  color: var(--secondary);
+  background: transparent;
+  min-height: 0;
+}
+
+:where(.button):hover:not(:disabled) {
+  filter: brightness(1.15);
+}
+
+:where(.button):focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
+}
+
+:where(.button):disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+:where(.button--danger) {
+  color: var(--tertiary);
+  background: var(--danger-background);
+  border-color: var(--danger-border);
+}

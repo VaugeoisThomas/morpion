@@ -1,0 +1,32 @@
+.username-field {
+  margin-top: 1.5rem;
+}
+
+.username-field__label {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: #edf6ff;
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.username-field__input {
+  width: 100%;
+  padding: 0.75rem;
+  color: #edf6ff;
+  background: rgba(12, 27, 47, 0.8);
+  border: 1px solid rgba(137, 172, 230, 0.26);
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.username-field__input::placeholder {
+  color: rgba(210, 224, 236, 0.7);
+}
+
+.username-field__hint {
+  display: block;
+  margin-top: 0.65rem;
+  color: #8fa8c8;
+  font-size: 0.78rem;
+}

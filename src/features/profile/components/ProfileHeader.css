@@ -1,0 +1,32 @@
+.profile-header__back {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: #dfeeff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.profile-header {
+  margin-bottom: 1.5rem;
+}
+
+.profile-header__title {
+  margin: 0;
+  color: #edf6ff;
+  font-size: clamp(2.2rem, 3vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.06em;
+  font-weight: 800;
+}
+
+.profile-header__subtitle {
+  margin: 0.4rem 0 0;
+  color: #a7bfdc;
+  font-size: 1.03rem;
+}

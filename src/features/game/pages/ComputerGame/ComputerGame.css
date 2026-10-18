@@ -1,0 +1,21 @@
+.computer-game {
+  width: min(100%, 480px);
+  margin: 0 auto;
+}
+
+.computer-game__title {
+  margin: 0;
+}
+
+.computer-game__status,
+.computer-game__error {
+  margin-top: 12px;
+}
+
+.computer-game__error {
+  color: #ff9aa8;
+}
+
+.computer-game__replay {
+  margin-top: 16px;
+}

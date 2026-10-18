@@ -1,0 +1,42 @@
+.game-symbol {
+  --game-symbol-size: 42px;
+  --game-symbol-scale: 0.51861;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+  width: var(--game-symbol-size);
+  height: var(--game-symbol-size);
+  vertical-align: middle;
+  pointer-events: none;
+}
+
+.game-symbol__image {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: none;
+  transform: translate(-50%, -50%) scale(var(--game-symbol-scale));
+}
+
+.game-symbol--small {
+  --game-symbol-size: 24px;
+  --game-symbol-scale: 0.29635;
+}
+
+.game-symbol--large {
+  --game-symbol-size: 53px;
+  --game-symbol-scale: 0.65444;
+}
+
+.game-symbol--board {
+  --game-symbol-size: 64px;
+  --game-symbol-scale: 0.79026;
+}
+
+@media (min-width: 601px) {
+  .game-symbol--board {
+    --game-symbol-size: 80.9856px;
+    --game-symbol-scale: 1;
+  }
+}

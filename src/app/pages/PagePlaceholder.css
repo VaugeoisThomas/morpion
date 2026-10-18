@@ -1,0 +1,8 @@
+.page-placeholder__title {
+  margin-bottom: 12px;
+  font-size: 2rem;
+}
+
+.page-placeholder__description {
+  color: var(--text-muted);
+}

@@ -1,0 +1,46 @@
+.game-room-status__loader {
+  display: block;
+  flex-shrink: 0;
+  animation: game-room-status-spin 1.2s linear infinite;
+}
+
+.game-room-status__loader img {
+  display: block;
+  max-width: none;
+}
+
+@keyframes game-room-status-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.game-room-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  line-height: 1.5;
+  text-align: center;
+  overflow-wrap: anywhere;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+@media (min-width: 601px) {
+  .game-room-status {
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 28px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-room-status__loader {
+    animation: none;
+  }
+}

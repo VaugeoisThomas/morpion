@@ -1,0 +1,26 @@
+.game-result {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--game-result-gap, 0.5rem);
+  white-space: nowrap;
+}
+
+.game-result::before {
+  content: "";
+  width: var(--game-result-marker-size, 5px);
+  height: var(--game-result-marker-size, 5px);
+  flex-shrink: 0;
+  background: currentColor;
+}
+
+.game-result--win {
+  color: var(--game-result-win, #00d4b0);
+}
+
+.game-result--loss {
+  color: var(--game-result-loss, #ff19b8);
+}
+
+.game-result--draw {
+  color: var(--game-result-draw, #a7bfdc);
+}

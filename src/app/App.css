@@ -1,0 +1,100 @@
+@font-face {
+  font-family: "Inter";
+
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+
+  font-style: normal;
+
+  font-weight: 100 900;
+
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --secondary: #00c8ff;
+  --tertiary: #f328b6;
+  --page-background: #020b23;
+  --surface-background: #06122f;
+  --surface-raised: #0a1737;
+  --surface-active: #042258;
+  --surface-profile: #122349;
+  --border-color: #122349;
+  --text-primary: #e2e8ff;
+  --text-muted: #7c8aad;
+  --sidebar-width: 280px;
+  --primary: #0073ff;
+  --deep-blue: #18226f;
+  --success: #00d6a0;
+  --danger-background: #3a0c32;
+  --danger-border: #97214f;
+  --font-family: "Inter", "Segoe UI", sans-serif;
+  --font-size-title: 3rem;
+  --font-size-heading: 1.625rem;
+  --font-size-body: 0.9375rem;
+  --font-size-small: 0.75rem;
+  --font-size-button: 0.8125rem;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --radius-control: 10px;
+  --radius-card: 12px;
+  --control-height: 38px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text-primary);
+  background: var(--page-background);
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: normal;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
+  outline-color: var(--secondary);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+:where(h1) {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+}
+
+:where(h2) {
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+
+:where(input,
+select,
+textarea) {
+  font: inherit;
+}
