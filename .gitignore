@@ -1,0 +1,18 @@
+# Sauvegarde privée de l’ancien projet
+_backup/
+
+# Dépendances et sorties générées
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Configuration locale et secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Fichiers système
+.DS_Store
+Thumbs.db
