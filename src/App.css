@@ -1,0 +1,66 @@
+.app-shell {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 202px minmax(0, 1fr);
+  background: #020b23 url('/background.png') center top / 100% auto no-repeat;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 2px var(--border);
+  overflow: hidden;
+}
+.sidebar { border-right: 1px solid var(--border); padding: 24px; background: #020b23; }
+.sidebar-heading { text-align: center; margin-bottom: 28px; }
+.sidebar-brand { font-size: 27px; font-weight: 800; }
+.sidebar-heading p { color: var(--muted); font-size: 11px; margin-top: 6px; white-space: nowrap; }
+.navigation { display: grid; gap: 5px; }
+.navigation-item { display: flex; align-items: center; gap: 12px; min-height: 43px; padding: 12px; border: 0; border-radius: 5px; background: transparent; color: var(--muted); font-size: 12px; text-align: left; min-width: 0; }
+.navigation-item span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.navigation-item img { flex-shrink: 0; }
+.navigation-item--active { position: relative; background: #062353; color: #dfe7ff; }
+.navigation-item--active::before { position: absolute; content: ''; width: 3px; inset: 5px auto 5px 0; background: var(--cyan); border-radius: 2px; }
+.menu-toggle { display: none; }
+.home { position: relative; isolation: isolate; overflow: hidden; padding: 32px 40px 24px 83px; }
+.home-header { text-align: center; margin-bottom: 28px; }
+.brand-symbols { display: flex; justify-content: center; height: 33px; }
+.brand-symbols > span { position: relative; width: 33px; height: 33px; }
+.brand-symbols img { position: absolute; max-width: none; }
+.brand-cross img { top: -7.23px; left: -7.23px; }
+.brand-circle img { top: -4.95px; left: -4.95px; }
+.home-header h1 { font-size: 48px; font-weight: 800; line-height: 58px; margin: 3px 0; text-shadow: 0 0 12px #58afff60; }
+.home-header p { color: var(--muted); font-size: 15px; line-height: 18px; }
+.game-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px; margin-bottom: 28px; }
+.game-action { display: flex; align-items: center; gap: 22px; padding: 22px; min-height: 94px; border: 1px solid #ffffff12; border-radius: 12px; color: #dfe7ff; text-align: left; }
+.game-action--online { background: #06378f; }
+.game-action--computer { background: #392099; }
+.game-action--create { background: #00666d; }
+.game-action--join { background: #925009; }
+.game-action picture { display: flex; flex-shrink: 0; }
+.game-action-copy { display: grid; gap: 5px; min-width: 0; }
+.game-action strong { font-size: 18px; line-height: 22px; }
+.game-action-copy > span { font-size: 12px; color: #d2dbee; line-height: 15px; }
+.action-chevron { margin-left: auto; flex-shrink: 0; }
+.home-panels { display: grid; grid-template-columns: 450fr 401fr; gap: 24px; align-items: start; }
+.home-panel { background: #07112d; border: 1px solid var(--border); border-radius: 12px; padding: 18px; min-height: 166px; }
+.home-panel--recent { border-color: transparent; min-height: 133px; }
+.home-panel h2 { display: flex; align-items: center; gap: 10px; font-size: 14px; line-height: 20px; font-weight: 700; }
+.empty-state { color: var(--muted); font-size: 12px; line-height: 1.6; margin-top: 24px; }
+@media (max-width: 1100px) { .home { padding-left: 32px; padding-right: 32px; } .game-action { gap: 14px; padding: 18px; } .game-action strong { font-size: 16px; } }
+@media (max-width: 900px) {
+  .app-shell { grid-template-columns: 1fr; grid-template-rows: auto 1fr; border-radius: 0; box-shadow: none; background-size: auto 100%; }
+  .sidebar { padding: 12px 20px; border-right: 0; background: transparent; }
+  .sidebar-heading { display: none; }
+  .menu-toggle { display: block; margin-left: auto; min-height: 44px; border: 1px solid var(--border); border-radius: 6px; color: #dfe7ff; background: #07112d; padding: 10px 12px; cursor: pointer; }
+  .navigation { display: none; margin-top: 12px; }
+  .navigation--open { display: grid; }
+  .home { padding: 20px 24px 32px; }
+}
+@media (max-width: 600px) {
+  .home { padding: 12px 20px 24px; }
+  .home-header h1 { font-size: 32px; line-height: 40px; }
+  .home-header p { font-size: 12px; line-height: 18px; }
+  .game-actions { grid-template-columns: 1fr; gap: 10px; margin-bottom: 24px; }
+  .game-action { min-height: 64px; padding: 16px; gap: 14px; }
+  .game-action strong { font-size: 14px; line-height: 20px; }
+  .game-action-copy > span { display: none; }
+  .home-panels { grid-template-columns: 1fr; gap: 16px; }
+  .home-panel, .home-panel--recent { min-height: 133px; }
+}
