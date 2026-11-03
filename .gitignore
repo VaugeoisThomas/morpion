@@ -1,18 +1,32 @@
-# Sauvegarde privée de l’ancien projet
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Sauvegarde et configuration privée
 _backup/
-
-# Dépendances et sorties générées
-node_modules/
-dist/
-coverage/
-*.tsbuildinfo
-
-# Configuration locale et secrets
 .env
 .env.*
 !.env.example
-*.local
-
-# Fichiers système
-.DS_Store
-Thumbs.db
+coverage/
+*.tsbuildinfo
