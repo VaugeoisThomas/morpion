@@ -94,6 +94,110 @@ La validation d'une étape ne vaut pas validation des étapes suivantes.
   Les limites listées ci-dessus restent à traiter dans les étapes suivantes.
 - Aucun commit, push ou merge effectué.
 
+## 6 — Partie contre l'ordinateur — 3 novembre 2026 — validé
+
+- Branche de travail : `feat/partie-ordinateur`.
+- Livraison précédente confirmée : commit `f741aad`, pull request #1 fusionnée
+  sur `main` (commit de fusion `628f828`).
+- Inspection du frame Figma ordinateur `108:6362` dans l'application Figma.
+  Il propose trois difficultés, en contradiction avec le PRD qui en exclut
+  plusieurs. Le choix de symbole et du nombre de manches pour ce mode n'est
+  pas précisé dans le PRD. Thomas a autorisé le choix X/O et 1, 3 ou 5 manches,
+  avec une seule IA. Il a précisé que X commence chaque manche et que les
+  matchs nuls comptent dans le total. Aucune alternance du premier symbole.
+- Ajout de `src/features/game/computer.ts` : une seule IA, sans dépendance,
+  fondée sur l'examen des suites possibles (minimax). Les règles existantes
+  restent la référence pour valider les coups et détecter les résultats.
+- Ajout de `tests/computer.test.mjs` : attente du tour, arrêt après résultat,
+  victoire immédiate, blocage adverse, absence de mutation et exploration
+  des suites de coups humains pour les deux symboles.
+- Ajout de `src/features/game/ComputerGame.tsx` et `ComputerGame.css` :
+  configuration, grille 3 × 3, tour courant, score de série, surbrillance de
+  la ligne gagnante, manche suivante et relance complète de la série.
+- Extraction de la navigation dans `src/components/AppLayout.tsx`, partagée
+  entre les deux écrans ; modification de `src/App.tsx` pour naviguer entre
+  accueil et ordinateur avec des liens `#/` et `#/ordinateur`, sans bibliothèque.
+- Modification de `src/features/home/Home.tsx` : accès ordinateur activé ;
+  les trois autres modes restent désactivés jusqu'à leurs étapes respectives.
+- Copie des deux symboles SVG de la sauvegarde vers `public/figma/game/`.
+- L'ordinateur attend 400 ms avant son coup ; toutes les cases sont bloquées
+  pendant son tour. Le délai est annulé si l'écran est quitté.
+- Vérifications : les 13 tests des règles et de l'IA passent. Un premier test
+  avait montré que l'IA pouvait retarder une victoire déjà disponible ; le score
+  tient désormais compte du nombre de cases restantes pour privilégier une
+  victoire immédiate.
+- Parcours inspectés dans Opera : choix O / une manche, premier coup automatique
+  de X, réponse à deux coups humains, défaite et score 0–1, diagonale gagnante
+  surlignée, toutes les cases bloquées après le résultat et bouton Rejouer.
+  Relance vérifiée ; puis choix X / trois manches et passage de la première à
+  la deuxième manche avec grille vide, X au premier tour et score conservé.
+- Rendu de la grille et des scores inspecté à 375 pixels de large, sans
+  débordement horizontal visible. La maquette mobile reste à exporter : cette
+  inspection ne garantit pas une fidélité visuelle complète.
+- Les scores de cette série sont temporaires dans l'écran, sans enregistrement
+  dans le classement ni l'historique. Supabase et les comptes restent aux étapes suivantes.
+- Limites : pas de sauvegarde après rechargement ou retour à l'accueil ; pas de
+  validation manuelle d'une série complète de cinq manches à cette étape.
+- Validation technique finale : `npm run build`, lint de `src/`, les 13 tests
+  des règles et de l'IA et `git diff --check` réussis.
+- Aucun commit, push ou merge de cette itération avant sa validation.
+
+## 7 — Adapter la partie à la maquette Jeu en cours — 3 novembre 2026 — validé
+
+- Demande de Thomas : reprendre le rendu de l'écran « Jeu en cours » de Figma.
+- Inspection et export du frame `5:29319` (1 140 × 520) vers
+  `docs/figma/jeu-en-cours-desktop.png` ; provenance documentée dans
+  `docs/figma/README.md`.
+- Fichiers applicatifs modifiés : `src/features/game/ComputerGame.tsx` et
+  `src/features/game/ComputerGame.css`.
+- Bandeau supérieur avec noms, symboles, scores, numéro de manche et pastilles
+  de progression. Le retour à l'accueil reste disponible dans ce bandeau.
+- Navigation latérale et titre de configuration masqués pendant la partie,
+  comme dans la référence de jeu en cours ; configuration et accueil conservés.
+- Indicateur de tour avec symbole et texte à gauche du plateau sur desktop.
+- Grille à neuf cases sombres espacées, contours discrets, angles arrondis,
+  symboles agrandis ; fond PNG fourni conservé.
+- Adaptation mobile : bandeau sur deux lignes, indicateur au-dessus du plateau.
+- Règles, IA, symboles choisis, calcul des scores, manches et relance inchangés.
+- Le tchat de la référence est réservé aux parties entre humains selon le PRD.
+  Aucun faux message ni avatar de compte n'est ajouté au mode ordinateur.
+- Vérifications : compilation, lint de `src/`, 13 tests des règles et de l'IA
+  et `git diff --check` réussis. Nouveau rendu desktop inspecté dans Opera.
+  À 375 pixels : bandeau, retour accueil, progression, indicateur et neuf cases
+  inspectés sans débordement visible ; un coup X et la réponse O ont été vérifiés
+  visuellement avec les nouveaux symboles agrandis.
+- Cette révision complète l'itération 6, toujours en attente de validation finale.
+  Aucun commit, push ou merge de ces deux étapes avant cette validation.
+
+## 8 — Centrage de la grille desktop — 3 novembre 2026 — validé
+
+- Demande : centrer la grille dans la largeur de l'écran desktop.
+- Modification de `src/features/game/ComputerGame.css` : colonnes latérales
+  de largeur identique autour de la colonne de grille de 368 pixels.
+  Le conteneur étant lui-même centré, l'axe horizontal de la grille coïncide
+  désormais avec celui de l'écran, indépendamment de l'indicateur à gauche.
+- Les dispositions mobile et tablette ainsi que les règles restent inchangées.
+- Vérifications : centrage horizontal inspecté sur grand écran dans Opera ;
+  compilation et `git diff --check` réussis.
+- Correction incluse dans la branche `feat/partie-ordinateur`, en attente de
+  validation avant commit, push et merge.
+
+## 9 — Plateau plus grand et centré sur desktop — 3 novembre 2026 — validé
+
+- Demande : agrandir légèrement le plateau sur grand écran et le centrer
+  horizontalement et verticalement pour mieux occuper l'espace disponible.
+- Modification de `src/features/game/ComputerGame.css` uniquement pour les
+  écrans de plus de 900 pixels : bandeau en première ligne, zone de jeu dans
+  l'espace restant, contenu centré verticalement et colonnes latérales symétriques.
+- Plateau adaptatif jusqu'à 480 pixels au lieu de 368 pixels ; sa taille tient
+  aussi compte de la hauteur disponible pour les fenêtres desktop moins hautes.
+- Symboles de la grille agrandis de 15 % sur desktop. Mobile et tablette conservés.
+- Vérifications : compilation et `git diff --check` réussis ; rendu grand écran
+  inspecté dans Opera avec une partie active. Plateau de 480 pixels centré
+  dans la largeur et dans la hauteur de la zone située sous le bandeau des scores.
+- Toujours en attente de validation de l'ensemble du mode ordinateur avant
+  commit, push et merge de `feat/partie-ordinateur`.
+
 ## Livraison Git des étapes validées — 3 novembre 2026
 
 - Thomas a confirmé que la validation d'une étape déclenche son commit, son
@@ -106,5 +210,14 @@ La validation d'une étape ne vaut pas validation des étapes suivantes.
 - Rétablissement des exclusions `_backup/`, `.env`, `.env.*`, `coverage/` et
   `*.tsbuildinfo` dans `.gitignore`, en conservant les exclusions du socle Vite.
 - Sauvegarde privée et modification locale du README générique exclues du commit.
-- Validation de livraison : autorisée explicitement par Thomas après validation
-  du rendu ; résultats GitHub à communiquer à l'issue de l'opération.
+- Livraison effectuée : pull request https://github.com/VaugeoisThomas/morpion/pull/1
+  fusionnée sur `main`, commit de fusion `628f828`. La branche locale `main`
+  a été synchronisée avant de commencer l'itération 6.
+
+## Validation et livraison du mode ordinateur — 3 novembre 2026
+
+- Thomas a validé le mode ordinateur et les révisions visuelles des itérations 6 à 9.
+- Cette validation remplace les mentions d’attente figurant dans les comptes rendus précédents.
+- Livraison autorisée : commit de la branche `feat/partie-ordinateur`, push puis fusion sur `main`.
+- Vérifications déjà réalisées : compilation, lint de `src/`, 13 tests des règles et de l’IA ; parcours de jeu et rendu desktop/mobile inspectés.
+- Le README générique, `public/icons.svg` et les ressources inutilisées de `src/assets/` restent hors de cette livraison.
