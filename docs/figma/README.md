@@ -14,8 +14,9 @@
   Sur petits écrans, sa hauteur suit celle de la page, avec recadrage horizontal.
   Le panneau de navigation desktop possède un fond opaque comme dans l'export.
 
-L'accueil est une première intégration visuelle. Les quatre modes et les autres
-pages sont désactivés en attendant leurs itérations fonctionnelles. Les panneaux
+L'accueil est une première intégration visuelle. Le mode ordinateur est désormais
+accessible ; les trois autres modes sont désactivés en attendant leurs itérations.
+Les panneaux
 de scores affichent des états sans données ; aucun joueur fictif n'est présenté
 comme utilisateur connecté. Le profil nécessite l'intégration des comptes.
 
@@ -24,3 +25,21 @@ de 1 200 pixels et sur grand écran. L'adaptation à 375 pixels et l'ouverture d
 menu mobile ont été inspectées ; la conformité à la maquette mobile reste à
 vérifier après son export. Le connecteur Figma MCP reste limité par le quota du
 forfait Starter.
+
+## Mode ordinateur
+
+Frame inspecté dans l'application Figma : `108:6362`, « Jouer contre
+l'ordinateur — Desktop », 1 200 × 720 pixels. Les choix de symbole et de manches
+sont conservés sur accord de Thomas. Le panneau des trois difficultés est
+remplacé par une présentation de l'adversaire unique, conformément au PRD.
+Les symboles de la grille proviennent de `public/figma/game/`, copiés depuis
+la sauvegarde. L'écran de partie est adapté au mode local sans tchat ni compte.
+
+## Jeu en cours
+
+`jeu-en-cours-desktop.png` : export PNG du frame `5:29319`, 1 140 × 520 pixels,
+enregistré depuis l'application Figma le 3 novembre 2026. Cette référence sert
+au bandeau des scores, aux repères de manches, à l'indicateur de tour et aux
+cases espacées. Le mode ordinateur conserve les noms « Toi » et « Ordinateur »
+et un retour à l'accueil. Les avatars des comptes et le tchat entre humains
+restent réservés à leurs étapes fonctionnelles.
