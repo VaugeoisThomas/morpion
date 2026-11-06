@@ -483,3 +483,10 @@ La validation d'une étape ne vaut pas validation des étapes suivantes.
 - `.env` et modifications indépendantes préexistantes exclus de la livraison.
 - Commit applicatif `1c517c7` poussé sur `feat/parties-entre-amis` ; livraison via
   [la pull request #4](https://github.com/VaugeoisThomas/morpion/pull/4).
+- Contrôle SonarCloud initial en échec : type implicite du bouton de jointure
+  et conservation du hash brut dans sessionStorage. Correction avant fusion :
+  bouton explicitement de type submit ; retour via paramètres internes validés,
+  sans stockage d'URL brute. La confirmation d'inscription conserve aussi ce retour.
+- Tests ajoutés pour le retour vers une invitation et le rejet des destinations
+  externes ou malformées. Après correction : 35 tests, compilation et lint réussis.
+  Aucun changement des règles de partie ni de la migration déjà appliquée.

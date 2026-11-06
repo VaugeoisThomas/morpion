@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { formatInviteCode, invitationUrl, isInviteCode, roomSecondsLeft } from '../src/features/rooms/rooms.ts'
-import { readRoute } from '../src/navigation.ts'
+import { accountLink, accountReturnRoute, readRoute } from '../src/navigation.ts'
 
 test('le code est normalisé et une invitation ne réutilise aucun ancien jeton', () => {
   assert.equal(formatInviteCode('a1b2 c3d4'), 'A1B2-C3D4')
@@ -10,6 +10,16 @@ test('le code est normalisé et une invitation ne réutilise aucun ancien jeton'
   assert.equal(invitationUrl('https://morpion.example/?code=secret#/compte','A1B2-C3D4'), 'https://morpion.example/#/rejoindre/A1B2-C3D4')
   assert.equal(readRoute('#/rejoindre/A1B2-C3D4').code, 'A1B2-C3D4')
   assert.equal(readRoute('#/salle/texte-invalide').page, 'home')
+})
+
+test('le retour après connexion conserve uniquement des destinations internes valides', () => {
+  const invite = '#/rejoindre/A1B2-C3D4'
+  assert.equal(accountReturnRoute(accountLink(readRoute(invite))), invite)
+  assert.equal(accountReturnRoute(accountLink(readRoute('#/creer'))), '#/creer')
+  assert.equal(accountLink(readRoute('#/rejoindre/valeur-invalide')), '#/compte')
+  assert.equal(accountReturnRoute('#/compte?retour=https://autre.example'), null)
+  assert.equal(accountReturnRoute('#/compte?retour=rejoindre&code=%3Cscript%3E'), null)
+  assert.equal(accountReturnRoute('#/compte?retour=salle&id=../autre'), null)
 })
 
 test('le chronomètre utilise le départ de tour serveur et s’arrête entre les manches', () => {

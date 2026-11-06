@@ -2,6 +2,7 @@ import { useAuth } from '../account/AuthContext'
 import { CreateRoom, JoinRoom } from './RoomSetup'
 import RoomView from './RoomView'
 import type { Route } from '../../navigation'
+import { accountLink } from '../../navigation'
 import './RoomsPage.css'
 
 export default function RoomsPage({ route }: Readonly<{ route: Route }>) {
@@ -10,9 +11,7 @@ export default function RoomsPage({ route }: Readonly<{ route: Route }>) {
   if (loading) content = <output>Vérification de ta connexion…</output>
   else if (!session) content = <section className="room-panel room-join">
     <h1>Joue avec tes amis</h1><p>Connecte-toi pour créer ou rejoindre une partie.</p>
-    <a className="primary-button" href="#/compte" onClick={() => {
-      try { sessionStorage.setItem('morpion:returnTo', window.location.hash) } catch { /* Navigation disponible même sans stockage. */ }
-    }}>Se connecter ou créer un compte</a>
+    <a className="primary-button" href={accountLink(route)}>Se connecter ou créer un compte</a>
   </section>
   else if (route.page === 'create') content = <CreateRoom />
   else if (route.page === 'join') content = <JoinRoom key={route.code} initialCode={route.code} />

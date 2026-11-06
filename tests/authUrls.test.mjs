@@ -5,6 +5,8 @@ import { getAuthRedirectUrl, getAuthCallbackMessage } from '../src/features/acco
 test('l’URL de retour conserve le déploiement mais retire code et ancien fragment', () => {
   assert.equal(getAuthRedirectUrl('https://morpion.example/app/?code=ancien#/ordinateur'), 'https://morpion.example/app/#/compte')
   assert.equal(getAuthRedirectUrl('http://localhost:5173/#access_token=ancien'), 'http://localhost:5173/#/compte')
+  assert.equal(getAuthRedirectUrl('http://localhost:5173/?code=ancien#/compte?retour=rejoindre&code=A1B2-C3D4'), 'http://localhost:5173/#/compte?retour=rejoindre&code=A1B2-C3D4')
+  assert.equal(getAuthRedirectUrl('http://localhost:5173/#/compte?retour=https://autre.example'), 'http://localhost:5173/#/compte')
 })
 
 test('un lien expiré est reconnu dans la query et dans le fragment', () => {

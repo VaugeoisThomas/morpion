@@ -81,7 +81,7 @@ export function JoinRoom({ initialCode }: Readonly<{ initialCode: string }>) {
         autoComplete="off" autoCapitalize="characters" spellCheck={false} maxLength={9} pattern="[A-Z0-9]{4}-[A-Z0-9]{4}"
         placeholder="A1B2-C3D4" required disabled={busy} aria-describedby="invite-hint" />
       <p id="invite-hint">Huit lettres ou chiffres. Le tiret est ajouté automatiquement.</p>
-      <button className="primary-button" disabled={busy || !isInviteCode(code)}>{busy ? 'Connexion à la salle…' : 'Rejoindre la partie'}</button>
+      <button type="submit" className="primary-button" disabled={busy || !isInviteCode(code)}>{busy ? 'Connexion à la salle…' : 'Rejoindre la partie'}</button>
       {error && <p className="account-error" role="alert">{error}</p>}
     </form>
   </>

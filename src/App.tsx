@@ -6,7 +6,7 @@ import { getAuthCallbackMessage } from './features/account/authUrls'
 import Home from './features/home/Home'
 import RoomsPage from './features/rooms/RoomsPage'
 import { useAuth } from './features/account/AuthContext'
-import { consumeReturnRoute, readRoute } from './navigation'
+import { accountReturnRoute, readRoute } from './navigation'
 import './App.css'
 
 export default function App() {
@@ -28,9 +28,9 @@ export default function App() {
 
   useEffect(() => {
     if (!session) return
-    const pendingRoute = consumeReturnRoute()
+    const pendingRoute = accountReturnRoute(window.location.hash)
     if (pendingRoute) window.location.hash = pendingRoute
-  }, [session])
+  }, [session, route])
 
   let content
   if (route.page === 'home') content = <Home />
