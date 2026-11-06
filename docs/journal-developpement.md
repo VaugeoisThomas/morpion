@@ -481,3 +481,5 @@ La validation d'une étape ne vaut pas validation des étapes suivantes.
 - La conformité visuelle exacte à Figma et la mesure chiffrée de performance
   ne sont pas déduites du seul retour fonctionnel.
 - `.env` et modifications indépendantes préexistantes exclus de la livraison.
+- Commit applicatif `1c517c7` poussé sur `feat/parties-entre-amis` ; livraison via
+  [la pull request #4](https://github.com/VaugeoisThomas/morpion/pull/4).
