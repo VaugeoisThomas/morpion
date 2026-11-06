@@ -428,3 +428,56 @@ La validation d'une étape ne vaut pas validation des étapes suivantes.
   exclusivement des deux migrations historiques qui redéfinissent la même fonction.
   Ajout de `.sonarcloud.properties` excluant ces deux fichiers du seul calcul
   de duplication ; historique SQL inchangé, analyse des problèmes conservée.
+- Fusion du jalon 3 confirmée : PR #3, commit de fusion `5b0dae3` ; `main`
+  local synchronisé. SonarCloud réussi sur la tête `96f9cdd` avant fusion.
+
+## Itération 17 — Parties entre amis — 6 novembre 2026
+
+- Nouvelle branche `feat/parties-entre-amis` à partir du jalon 3 livré.
+- Règles conservées : 1/3/5 manches, 15/30/60 secondes, X commence, nuls compris,
+  dépassement du temps = perte de la manche. Thomas valide aussi l'accord des
+  deux joueurs pour rejouer avec les mêmes options dans le même salon.
+- Figma : session créée, métadonnées des écrans et identifiants relus ; contexte
+  détaillé et captures refusés par le quota Starter. Ressources et composants
+  locaux réutilisés, conformité visuelle des nouveaux écrans non affirmée.
+- `src/features/rooms/` : types et invitations, API Supabase, abonnement Realtime,
+  formulaires de création/jointure, contrôle de session, attente et plateau en ligne.
+- `src/navigation.ts` : routes créer/rejoindre/salle et retour au lien d'invitation
+  après authentification. Accueil activé pour créer et rejoindre ; recherche aléatoire
+  toujours désactivée. Layout adapté au nouveau type de page.
+- `GameBoard.tsx` extrait du mode ordinateur : même grille et mêmes SVG partagés
+  avec le multijoueur, sans modifier les règles ni le centrage du mode ordinateur.
+- Migration `20261106144555_friend_rooms.sql` appliquée via l'API MCP : création
+  idempotente, code généré serveur, état de manche, heure de départ du tour,
+  numéro de série et accords de revanche. Coups/actions sous verrou, contrôle des
+  participants et refus des demandes de manche/série périmées.
+- Les anciennes RPC de coup/démarrage et l'insertion directe sont retirées aux
+  clients pour empêcher le contournement des nouvelles règles. La jointure existante
+  conserve son verrou et le contrôle des deux places.
+- Chronomètre vérifié côté serveur ; les clients signalent l'expiration, qui
+  attribue un seul point et termine la manche. Entre les manches, pas de compteur.
+- Synchronisation : abonnement filtré, relecture après action/reconnexion/retour
+  d'onglet et toutes les cinq secondes ; annulation des requêtes au démontage.
+- API réelle sans session : création refusée (`42501`). Privilèges distants et
+  publication Realtime contrôlés ; aucune salle réelle ni compte créé par l'agent.
+- 34 tests réussis, compilation et lint de `src/` et `tests/` réussis. Couverture
+  ajoutée : création répétée, troisième joueur, coups hors tour/occupés, requêtes
+  périmées, expiration, scores/nuls, revanche à deux accords et annulation en attente.
+- Documentation de parcours et de vérification : `docs/parties-entre-amis.md`.
+  Plan et références Figma actualisés.
+- Limites : test Realtime à deux comptes, contrôle desktop/mobile et mesure du
+  délai de création/jointure à effectuer. Déconnexions >30 secondes et nettoyage
+  restent au jalon 6 ; tchat et historique au jalon 7. Jalon 4 en attente de revue.
+- Serveur local accessible sur `http://127.0.0.1:5173/` (HTTP 200). Aucun commit,
+  push ou merge de cette branche sans nouvelle validation de Thomas.
+
+## Livraison du jalon 4 validée — 6 novembre 2026
+
+- Thomas confirme : « Tout passe. Et sur deux navigateurs différents. »
+  Validation fonctionnelle du jalon 4 enregistrée, y compris le parcours réel
+  multijoueur. Livraison commit, push et merge engagée conformément à la règle convenue.
+- Plan et documentation du mode amis actualisés. Derniers contrôles locaux :
+  34 tests réussis, compilation et lint réussis ; migration déjà appliquée.
+- La conformité visuelle exacte à Figma et la mesure chiffrée de performance
+  ne sont pas déduites du seul retour fonctionnel.
+- `.env` et modifications indépendantes préexistantes exclus de la livraison.
