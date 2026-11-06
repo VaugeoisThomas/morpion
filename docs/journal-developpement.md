@@ -420,5 +420,7 @@ La validation d'une étape ne vaut pas validation des étapes suivantes.
   toujours désactivée côté Auth, non modifiée par cette migration.
 - Plan, documentation Auth et état de la migration mis à jour. Derniers contrôles
   applicatifs : 27 tests, compilation et lint réussis.
-- Livraison Git en cours sur `feat/comptes-supabase`. `.env` reste ignoré ; les
-  modifications indépendantes préexistantes ne sont pas incluses.
+- Commit applicatif `6a70e33` poussé sur `feat/comptes-supabase`, livraison via
+  [la pull request #3](https://github.com/VaugeoisThomas/morpion/pull/3).
+  La fusion sur `main` est autorisée par Thomas dans cette même validation.
+  `.env` reste ignoré ; les modifications indépendantes préexistantes sont exclues.
