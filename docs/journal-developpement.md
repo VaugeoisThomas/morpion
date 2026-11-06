@@ -424,3 +424,7 @@ La validation d'une étape ne vaut pas validation des étapes suivantes.
   [la pull request #3](https://github.com/VaugeoisThomas/morpion/pull/3).
   La fusion sur `main` est autorisée par Thomas dans cette même validation.
   `.env` reste ignoré ; les modifications indépendantes préexistantes sont exclues.
+- Contrôle GitHub SonarCloud initial en échec : 7,9 % de duplication, provenant
+  exclusivement des deux migrations historiques qui redéfinissent la même fonction.
+  Ajout de `.sonarcloud.properties` excluant ces deux fichiers du seul calcul
+  de duplication ; historique SQL inchangé, analyse des problèmes conservée.
