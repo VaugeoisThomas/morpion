@@ -4,23 +4,38 @@ import ComputerGame from './features/game/ComputerGame'
 import AccountPage from './features/account/AccountPage'
 import { getAuthCallbackMessage } from './features/account/authUrls'
 import Home from './features/home/Home'
+import RoomsPage from './features/rooms/RoomsPage'
+import { useAuth } from './features/account/AuthContext'
+import { accountReturnRoute, readRoute } from './navigation'
 import './App.css'
 
 export default function App() {
-  const [page, setPage] = useState<'home' | 'computer' | 'account'>(() => {
-    if (window.location.hash === '#/compte' || getAuthCallbackMessage(window.location.href)) return 'account'
-    return window.location.hash === '#/ordinateur' ? 'computer' : 'home'
+  const { session } = useAuth()
+  const [route, setRoute] = useState(() => {
+    if (getAuthCallbackMessage(window.location.href)) return readRoute('#/compte')
+    return readRoute(window.location.hash)
   })
 
   useEffect(() => {
     function navigate() {
       // Le lien d'évitement ne doit pas changer l'écran courant.
       if (window.location.hash === '#content') return
-      setPage(window.location.hash === '#/compte' ? 'account' : window.location.hash === '#/ordinateur' ? 'computer' : 'home')
+      setRoute(readRoute(window.location.hash))
     }
     window.addEventListener('hashchange', navigate)
     return () => window.removeEventListener('hashchange', navigate)
   }, [])
 
-  return <AppLayout page={page}>{page === 'computer' ? <ComputerGame /> : page === 'account' ? <AccountPage /> : <Home />}</AppLayout>
+  useEffect(() => {
+    if (!session) return
+    const pendingRoute = accountReturnRoute(window.location.hash)
+    if (pendingRoute) window.location.hash = pendingRoute
+  }, [session, route])
+
+  let content
+  if (route.page === 'home') content = <Home />
+  else if (route.page === 'computer') content = <ComputerGame />
+  else if (route.page === 'account') content = <AccountPage />
+  else content = <RoomsPage route={route} />
+  return <AppLayout page={route.page}>{content}</AppLayout>
 }

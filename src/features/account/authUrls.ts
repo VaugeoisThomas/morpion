@@ -1,8 +1,11 @@
+import { accountLink, accountReturnRoute, readRoute } from '../../navigation.ts'
+
 /** Ne jamais réutiliser un ancien code ou jeton dans l'URL du prochain e-mail. */
 export function getAuthRedirectUrl(currentUrl: string): string {
   const url = new URL(currentUrl)
   url.search = ''
-  url.hash = '/compte'
+  const pendingRoute = accountReturnRoute(url.hash)
+  url.hash = pendingRoute ? accountLink(readRoute(pendingRoute)) : '/compte'
   return url.toString()
 }
 

@@ -15,10 +15,11 @@
   Le panneau de navigation desktop possède un fond opaque comme dans l'export.
 
 L'accueil est une première intégration visuelle. Le mode ordinateur est désormais
-accessible ; les trois autres modes sont désactivés en attendant leurs itérations.
+accessible ; création et jointure sont maintenant développées sur la branche
+des parties entre amis. La recherche d'adversaire reste désactivée.
 Les panneaux
 de scores affichent des états sans données ; aucun joueur fictif n'est présenté
-comme utilisateur connecté. Le profil nécessite l'intégration des comptes.
+comme utilisateur connecté. Les comptes et profils sont intégrés depuis le jalon 3.
 
 Le rendu desktop a été inspecté dans le navigateur local à la largeur de référence
 de 1 200 pixels et sur grand écran. L'adaptation à 375 pixels et l'ouverture du
@@ -41,5 +42,15 @@ la sauvegarde. L'écran de partie est adapté au mode local sans tchat ni compte
 enregistré depuis l'application Figma le 3 novembre 2026. Cette référence sert
 au bandeau des scores, aux repères de manches, à l'indicateur de tour et aux
 cases espacées. Le mode ordinateur conserve les noms « Toi » et « Ordinateur »
-et un retour à l'accueil. Les avatars des comptes et le tchat entre humains
-restent réservés à leurs étapes fonctionnelles.
+et un retour à l'accueil. Les avatars des comptes sont utilisés pour les parties
+entre amis ; le tchat reste réservé à son étape fonctionnelle.
+
+## Parties entre amis — 6 novembre 2026
+
+Métadonnées relues : création desktop `63:862` (1200 × 720), jointure `63:1097`
+(1200 × 720), attente `5:29204` (760 × 600). Frames mobiles correspondants :
+`43:4109`, `43:4237`, `5:29991` ; jeu mobile `5:30173`.
+Le contexte détaillé et les captures MCP restent bloqués par le quota Starter.
+Les composants, couleurs, police, symboles et avatars locaux sont réutilisés.
+Les écrans du jalon 4 sont fonctionnels, mais leur conformité exacte aux frames
+et leur rendu mobile ne sont pas encore vérifiés.

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { useAuth } from '../features/account/AuthContext'
+import type { Page } from '../navigation'
 
-type Props = { page: 'home' | 'computer' | 'account'; children: ReactNode }
+type Props = { page: Page; children: ReactNode }
 
 export default function AppLayout({ page, children }: Props) {
   const [menuOpen, setMenuOpen] = useState(false)

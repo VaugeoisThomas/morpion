@@ -83,8 +83,10 @@ service Supabase connecté ; il ne peut pas être garanti par une maquette local
 - Migration de sécurité appliquée sur Supabase le 6 novembre 2026, version
   `20261106142024`. Privilèges distants vérifiés : résultats non inscriptibles
   par les clients, scores protégés, TRUNCATE et exécution directe du trigger retirés.
-- Étape 4 à démarrer. Les options de salle ci-dessous
-  sont validées ; leur implémentation reste à faire.
+- Étape 4 validée par Thomas le 6 novembre 2026 : parcours fonctionnel confirmé
+  sur deux navigateurs différents. Création, invitation, attente, coups synchronisés,
+  délai et revanche développés ; migration serveur appliquée. Livraison Git en cours.
+- Prochaine étape : recherche d'un adversaire aléatoire (jalon 5).
 
 ### Décisions restantes et décisions déjà prises
 
@@ -92,6 +94,8 @@ service Supabase connecté ; il ne peut pas être garanti par une maquette local
   15, 30 ou 60 secondes ; X commence chaque manche ; les matchs nuls comptent.
   Un joueur qui dépasse le temps de son tour perd la manche. Le serveur devra
   faire appliquer ce délai et ce résultat, sans faire confiance au navigateur.
+- Revanche validée : les deux joueurs acceptent pour relancer la série avec les
+  mêmes options et les mêmes symboles, dans le même salon.
 - Scores : barème, départage, définition de la semaine et inclusion éventuelle
   des parties privées ou contre l'ordinateur.
 - Comptes : connexion par e-mail et mot de passe, e-mail de confirmation à la

@@ -2,15 +2,10 @@ import { useEffect, useState } from 'react'
 import { chooseComputerMove } from './computer'
 import { createGame, playMove } from './game'
 import type { Result, Symbol } from './game'
+import GameBoard, { SymbolImage } from './GameBoard'
 import './ComputerGame.css'
 
 type Settings = { human: Symbol; rounds: 1 | 3 | 5 }
-
-function SymbolImage({ symbol }: { symbol: Symbol }) {
-  return <span className={`game-symbol game-symbol--${symbol}`} aria-hidden="true">
-    <img src={`/figma/game/${symbol === 'X' ? 'cross' : 'circle'}.svg`} alt="" />
-  </span>
-}
 
 function Match({ settings }: { settings: Settings }) {
   const [game, setGame] = useState(createGame)
@@ -80,17 +75,8 @@ function Match({ settings }: { settings: Settings }) {
           <p className="turn-hint">{finished ? 'Manche terminée' : game.turn === settings.human ? 'Place ton signe' : 'À son tour de jouer'}</p>
         </aside>
         <div className="match-board-area">
-      <div className="game-board" role="group" aria-label="Grille de morpion, trois lignes et trois colonnes">
-        {game.board.map((cell, index) => {
-          const winning = game.result.status === 'won' && game.result.line.includes(index)
-          return <button key={index} type="button" className={`game-cell ${winning ? 'game-cell--winning' : ''}`}
-            disabled={finished || game.turn !== settings.human || cell !== null}
-            aria-label={`Ligne ${Math.floor(index / 3) + 1}, colonne ${index % 3 + 1} : ${cell ?? 'vide'}`}
-            onClick={() => setGame((current) => playMove(current, index, settings.human))}>
-            {cell !== null && <SymbolImage symbol={cell} />}
-          </button>
-        })}
-      </div>
+      <GameBoard board={game.board} disabled={finished || game.turn !== settings.human}
+        onPlay={(index) => setGame((current) => playMove(current, index, settings.human))} />
       {finished && <div className="match-result">
         {seriesFinished && <p role="status">{seriesStatus}</p>}
         <button type="button" className="primary-button" onClick={seriesFinished ? replay : nextRound}>

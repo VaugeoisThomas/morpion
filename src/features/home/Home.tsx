@@ -27,9 +27,9 @@ export default function Home() {
               <span className="game-action-copy"><strong>{label}</strong><span>{description}</span></span>
               <img className="action-chevron" src={asset('home-chevron-right')} alt="" />
             </>
-            return color === 'computer'
-              ? <a className={`game-action game-action--${color}`} href="#/ordinateur" key={color}>{content}</a>
-              : <button type="button" className={`game-action game-action--${color}`} key={color} disabled>{content}</button>
+            const destinations = { computer: '#/ordinateur', create: '#/creer', join: '#/rejoindre' }
+            if (color === 'online') return <button type="button" className={`game-action game-action--${color}`} key={color} disabled>{content}</button>
+            return <a className={`game-action game-action--${color}`} href={destinations[color]} key={color}>{content}</a>
           })}
         </section>
         <div className="home-panels">
