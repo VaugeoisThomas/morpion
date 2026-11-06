@@ -37,6 +37,13 @@ Supabase sera la source de vérité pour les parties multijoueurs : la validatio
 des coups et des résultats doit être atomique côté serveur pour éviter les
 désynchronisations et les coups simultanés.
 
+Décision confirmée par Thomas : toutes les requêtes de l'application passent
+par l'API Supabase avec le client unique `src/lib/supabase.ts` (SDK officiel).
+Authentification via Auth, données via `.from(...)`, actions serveur atomiques
+via `.rpc(...)` et synchronisation via Realtime. Aucune connexion directe
+PostgreSQL ni exécution de SQL fourni par le navigateur.
+Le SQL reste réservé aux migrations versionnées et aux tests locaux des règles RLS.
+
 ## Itérations et critères de validation
 
 1. **Accueil fidèle à Figma** : quatre actions demandées, classement hebdomadaire
@@ -65,11 +72,31 @@ service Supabase connecté ; il ne peut pas être garanti par une maquette local
 
 ## Points à préciser avant les étapes concernées
 
-- Options du salon : valeurs autorisées pour le nombre de tours et la durée d'un
-  tour ; comportement à expiration du temps ; alternance du premier joueur.
+### Avancement au 6 novembre 2026
+
+- Étapes 1 et 2 livrées sur `main`.
+- Étape 3 validée par Thomas : connexion par mot de passe, confirmation à l'inscription,
+  profil et avatars développés. Historique SQL récupéré, migration de restriction
+  des droits préparée et tests PostgreSQL locaux ajoutés.
+- Parcours réel d'inscription et de connexion effectué et validé par Thomas,
+  confirmation reçue le 6 novembre 2026.
+- Migration de sécurité appliquée sur Supabase le 6 novembre 2026, version
+  `20261106142024`. Privilèges distants vérifiés : résultats non inscriptibles
+  par les clients, scores protégés, TRUNCATE et exécution directe du trigger retirés.
+- Étape 4 à démarrer. Les options de salle ci-dessous
+  sont validées ; leur implémentation reste à faire.
+
+### Décisions restantes et décisions déjà prises
+
+- Options du salon validées le 6 novembre 2026 : 1, 3 ou 5 manches ; tours de
+  15, 30 ou 60 secondes ; X commence chaque manche ; les matchs nuls comptent.
+  Un joueur qui dépasse le temps de son tour perd la manche. Le serveur devra
+  faire appliquer ce délai et ce résultat, sans faire confiance au navigateur.
 - Scores : barème, départage, définition de la semaine et inclusion éventuelle
   des parties privées ou contre l'ordinateur.
-- Comptes : méthode de connexion souhaitée et accès éventuel au jeu sans compte.
+- Comptes : connexion par e-mail et mot de passe, e-mail de confirmation à la
+  création uniquement (demande de Thomas du 6 novembre 2026). Compte obligatoire
+  en ligne ; mode ordinateur accessible sans compte.
 - Abandon : traitement d'une déconnexion simultanée et d'un départ volontaire.
 - Confidentialité : visibilité de l'historique et accès aux salons publics.
 
