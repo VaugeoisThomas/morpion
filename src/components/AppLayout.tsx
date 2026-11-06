@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import type { ReactNode } from 'react'
+import { useAuth } from '../features/account/AuthContext'
 
-type Props = { page: 'home' | 'computer'; children: ReactNode }
+type Props = { page: 'home' | 'computer' | 'account'; children: ReactNode }
 
 export default function AppLayout({ page, children }: Props) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const { session, loading } = useAuth()
   const links = [
     { label: 'Accueil', icon: 'home-house', destination: '#/', page: 'home' },
     { label: 'Jouer en ligne', icon: 'home-users1' },
@@ -34,6 +36,10 @@ export default function AppLayout({ page, children }: Props) {
             ) : <button key={label} className="navigation-item" type="button" disabled>{content}</button>
           })}
         </nav>
+        <a className="account-link" href="#/compte" aria-current={page === 'account' ? 'page' : undefined}
+          onClick={() => setMenuOpen(false)}>
+          {loading ? 'Connexion…' : session ? 'Mon compte' : 'Se connecter'}
+        </a>
       </aside>
       {children}
     </div>

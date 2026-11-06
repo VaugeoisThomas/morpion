@@ -221,3 +221,204 @@ La validation d'une étape ne vaut pas validation des étapes suivantes.
 - Livraison autorisée : commit de la branche `feat/partie-ordinateur`, push puis fusion sur `main`.
 - Vérifications déjà réalisées : compilation, lint de `src/`, 13 tests des règles et de l’IA ; parcours de jeu et rendu desktop/mobile inspectés.
 - Le README générique, `public/icons.svg` et les ressources inutilisées de `src/assets/` restent hors de cette livraison.
+
+## 10 — Préparation des comptes et de Supabase — 6 novembre 2026 — en cadrage
+
+- Reprise du plan après livraison du mode ordinateur : pull request #2 fusionnée
+  sur `main`, commit applicatif `49b035b`, commit de fusion `306b5f3`.
+- État du dépôt vérifié : branche `main`, modifications locales du README et
+  ressources inutilisées conservées ; aucune configuration `.env` à la racine.
+- Prochaine étape du plan : authentification, profil et données Supabase.
+- Avant développement, trois choix demandés à Thomas : méthode de connexion,
+  accès des invités aux parties en ligne et projet Supabase à utiliser.
+- Les choix n'étant pas fixés par le PRD, aucune méthode d'authentification,
+  création de projet distant ni migration n'est engagée avant sa réponse.
+- Fichier modifié à cette étape : ce journal. Aucun code applicatif modifié.
+- Aucun commit, push ou merge effectué pour cette nouvelle étape.
+
+## 11 — Authentification Supabase par lien e-mail — 6 novembre 2026 — à tester
+
+- Choix confirmés par Thomas : connexion par lien e-mail ; compte obligatoire
+  pour les parties en ligne ; ordinateur accessible sans compte ; projet
+  `maxvfzqcfglvulcmyrnz`.
+- Branche : `feat/comptes-supabase`. Livraison du mode ordinateur confirmée :
+  pull request #2 fusionnée sur `main`, commit de fusion `306b5f3`.
+- Création de `.env` à la demande de Thomas, ignoré par Git. La sauvegarde
+  contenait une clé publique du même projet ; URL et rôle anon vérifiés sans
+  afficher la clé. Ajout de `.env.example` sans clé.
+- Ajout de la dépendance officielle `@supabase/supabase-js` dans `package.json`
+  et `package-lock.json`, et du client unique `src/lib/supabase.ts`.
+- Ajout de `src/features/account/` : contexte de session, fournisseur React,
+  page de connexion, styles et utilitaires d'URL.
+- Modification de `src/main.tsx`, `src/App.tsx` et `src/components/AppLayout.tsx` :
+  session partagée et accès « Se connecter / Mon compte » sur `#/compte`.
+- Connexion préparée via PKCE, restauration de session, déconnexion locale,
+  erreurs en français et délai de renvoi de 60 secondes.
+- Ajout de `tests/authUrls.test.mjs` : suppression des anciens codes/jetons dans
+  l'URL de retour, liens expirés, absence de réflexion du texte d'erreur distant.
+- Contrôle réel, en lecture seule, de `/auth/v1/settings` : projet accessible,
+  e-mail activé, inscriptions autorisées et confirmation e-mail requise.
+- Vérifications : compilation et lint de `src/` réussis, 16 tests réussis,
+  contrôle des espaces sur les fichiers de l'itération réussi et `.env`
+  confirmé ignoré par Git. Serveur Vite relancé sur `127.0.0.1:5173`, HTTP 200.
+- Ajout RLS au PRD par Thomas relevé pendant le travail et conservé. Le contrôle
+  global des espaces signale une ligne vide finale dans cet ajout indépendant ;
+  le PRD n'a pas été modifié par l'agent pendant cette étape.
+- Ajout de `docs/supabase-auth.md` : configuration, parcours et limites.
+- Limites : aucun e-mail de test envoyé ; URL de redirection et template e-mail
+  distants non inspectés ; contrôle visuel bloqué par l'outil navigateur
+  (erreur de démarrage persistante après réinitialisation).
+- Intégration Supabase proposée, mais aucun outil Supabase connecté confirmé.
+  L'agent ne dispose pas d'action d'installation/connexion automatique ; la
+  connexion au service doit être finalisée par Thomas dans l'interface.
+- Aucune table, politique, migration ou configuration distante modifiée.
+  Profil joueur et contrôle des accès aux futures parties en ligne restent à
+  développer après inspection du projet.
+- En attente de test réel et validation ; aucun commit, push ou merge effectué.
+
+## Accès d'administration Supabase — 6 novembre 2026
+
+- Thomas demande de créer un accès Supabase pour poursuivre l'inspection du projet.
+- État revérifié : intégration disponible mais non installée dans cette conversation.
+- Installation et connexion proposées à nouveau à sa demande explicite.
+- Aucun outil disponible ne permet de finaliser l'installation ou l'autorisation
+  du compte de l'utilisateur à sa place. L'autorisation reste à effectuer dans
+  l'interface par Thomas ; aucun accès d'administration n'est encore confirmé.
+- Aucun nouveau compte, jeton, rôle ou invitation n'a été créé dans Supabase.
+
+### Vérification après configuration MCP — 6 novembre 2026
+
+- Thomas confirme avoir terminé la connexion et autorise l'inspection.
+- Configuration locale vérifiée : serveur `supabase` activé, limité au projet
+  `maxvfzqcfglvulcmyrnz`, avec `read_only=true`.
+- Aucun outil Supabase n'est cependant exposé à cette conversation après
+  redécouverte des outils disponibles ; l'authentification ne peut donc pas
+  encore être confirmée par une requête MCP.
+- Le diagnostic `codex mcp list` échoue dans cet environnement : répertoire
+  utilisateur introuvable (`failed to resolve CODEX_HOME`).
+- Aucune donnée ni configuration distante modifiée. Inspection des tables et
+  des politiques RLS toujours en attente d'un outil MCP utilisable.
+
+## Itération 12 — Connexion MCP et profil joueur — 6 novembre 2026
+
+- Connexion MCP confirmée sur le bon projet. Les blocages précédents décrivent
+  l'état avant cette connexion. PRD, plan et code relus.
+- Inspection en lecture seule des trois tables publiques, contraintes, RLS,
+  fonctions, trigger et douze migrations. Bilan : `docs/supabase-inspection.md`.
+- Correction du blocage d'inscription : le trigger attend un pseudo. Le formulaire
+  distingue connexion et création ; seule la création envoie les métadonnées
+  du pseudo et de l'avatar initial, avec `shouldCreateUser: true`.
+- Ajout de `ProfileEditor.tsx` : lecture, édition du pseudo et de l'avatar,
+  sauvegarde avec la session, erreurs, nouvelle tentative, création si profil absent.
+  Les lectures sont annulées au démontage ; le composant est lié à l'utilisateur.
+- Ajout de `profile.ts` : contraintes et dix avatars. SVG copiés de la sauvegarde
+  vers `public/avatars/`, sans modifier la sauvegarde.
+- Styles ajoutés dans `AccountPage.css` ; `docs/supabase-auth.md` actualisé.
+- Compilation et lint de `src/` réussis, 18 tests réussis, dont pseudos et avatars.
+- REST sans session : HTTP 200 et aucun profil retourné malgré un profil existant.
+  L'isolation des écritures entre comptes n'est pas encore testée.
+- Serveur Vite relancé sur `http://127.0.0.1:5173/`. Connexion et inscription
+  inspectées visuellement sur desktop via Opera. Aucun e-mail envoyé.
+- Limites : parcours e-mail et sauvegarde réelle à tester ; conformité Figma du
+  profil et mobile à vérifier ; migrations de sécurité à préparer. Étape 3 en cours.
+- Aucune donnée, migration ou configuration distante modifiée. Aucun commit,
+  push ou merge : itération en attente de validation de Thomas.
+
+## Itération 13 — Mot de passe à la connexion — 6 novembre 2026
+
+- Demande de Thomas : e-mail uniquement à la création, plus de lien envoyé à
+  chaque connexion. Cette décision remplace le choix initial du magic link.
+- Thomas confirme qu'aucun compte sans mot de passe n'est à conserver.
+- `AccountPage.tsx` : mot de passe pour se connecter ; pseudo, mot de passe
+  et confirmation pour s'inscrire. Minimum de 8 caractères à l'inscription,
+  confirmation identique exigée. Champs secrets effacés après réussite et lors
+  du changement entre connexion et inscription.
+- `authenticate.ts` : inscription avec `signUp`, métadonnées du profil et URL
+  de confirmation ; connexion avec `signInWithPassword`. Aucun appel OTP.
+- Délai de 60 secondes limité à l'inscription ; il ne bloque plus la connexion.
+  Messages adaptés aux identifiants incorrects et à l'adresse non confirmée.
+- Message de restauration de session adapté dans `AuthProvider.tsx`.
+- `docs/supabase-auth.md`, plan et inspection actualisés pour la nouvelle décision.
+- Compilation et lint réussis ; 20 tests réussis. Deux tests vérifient que la
+  connexion ne demande ni inscription ni OTP et que l'inscription transmet les
+  métadonnées exigées par le trigger. Contrôle des espaces réussi.
+- Aucun compte créé ni e-mail de test envoyé par l'agent. Confirmation d'inscription
+  et connexion réelles à vérifier par Thomas dans `http://127.0.0.1:5173/#/compte`.
+- Aucune configuration Supabase modifiée. Aucun commit, push ni merge sans validation.
+
+## Itération 14 — Migrations et tests d'isolation PostgreSQL — 6 novembre 2026
+
+- Reprise de l'étape 3, sans activer les parties en ligne avant sa validation.
+- Douze migrations historiques récupérées en lecture seule depuis la table
+  `supabase_migrations.schema_migrations`, enregistrées avec leurs versions
+  originales dans `supabase/migrations/`. Aucun rejeu sur la base distante.
+- Migration locale `202611060001_restrict_client_permissions.sql` préparée :
+  profils réservés aux comptes, édition des seules colonnes pseudo/avatar,
+  résultats non inscriptibles par un client, création des salles limitée aux
+  options, suppression des privilèges inutiles et de l'exécution directe du trigger.
+- Dépendance de développement `@electric-sql/pglite` ajoutée pour exécuter
+  PostgreSQL en mémoire sans Docker ni accès au service distant. Aucun ajout
+  dans le code livré au navigateur. Scripts `npm test` et `npm run test:db` ajoutés.
+- `tests/database.test.mjs` : sept tests exécutent les migrations avec deux
+  identités simulées. Vérification des lectures/écritures RLS, de la protection
+  des résultats, du refus de TRUNCATE, du trigger et des RPC historiques de salle.
+- Correction de mon constat précédent : un index unique sur `lower(username)`
+  existe bien. Un test vérifie les doublons sans distinction de casse ; l'éditeur
+  de profil affiche désormais « Ce pseudo est déjà utilisé » sur erreur 23505.
+- Documentation mise à jour : `supabase/README.md`, inspection, connexion et plan.
+- Les 27 tests passent, dont les sept tests PostgreSQL. Compilation et lint
+  contrôlés pour cette itération ; aucun parcours SMTP/Realtime couvert par PGlite.
+- Aucun compte créé et aucune donnée, configuration ou migration distante modifiée.
+  Les protections nouvelles sont locales et leur application reste à effectuer
+  après revue, avec un accès de migration autorisé (MCP actuellement en lecture seule).
+- Aucun commit, push ou merge : attente de validation de Thomas.
+
+## Itération 15 — Accès applicatifs par API Supabase — 6 novembre 2026
+
+- Thomas confirme l'utilisation de l'API Supabase pour les requêtes de l'application.
+- Audit de `src/` : Auth utilise le SDK officiel ; les profils passent par
+  `.from('profiles')`. Aucune connexion PostgreSQL directe, aucun appel PGlite
+  ni requête SQL exécutée dans le code applicatif.
+- Règle d'architecture ajoutée au plan : client Supabase unique, API Auth et
+  données, RPC pour les futures actions atomiques, Realtime pour les événements.
+- Les migrations SQL et tests PostgreSQL restent des outils de développement.
+  Aucun changement fonctionnel nécessaire ; aucune nouvelle dépendance ajoutée.
+- Vérification par recherche des accès dans `src/` et `package.json`.
+  Aucun changement distant ni opération Git de livraison effectué.
+
+## Itération 16 — Confirmation d'inscription et validation du parcours — 6 novembre 2026
+
+- Thomas confirme que le parcours réel d'inscription et de connexion a déjà été
+  effectué et validé. Cette validation est acquise et ne sera plus redemandée.
+  Plan et documentation Auth corrigés en conséquence.
+- Finalisation du suivi interrompu : bouton de renvoi de confirmation dans
+  « Créer un compte », via l'API Supabase `auth.resend` de type `signup`.
+  Adresse validée avant l'appel, délai de 60 secondes, erreurs réseau et limites
+  traitées. Aucun renvoi automatique lors d'une connexion par mot de passe.
+- Messages des liens expirés adaptés et champs mobiles réglés à 16 px pour
+  éviter le zoom automatique sur certains navigateurs mobiles.
+- Règles des salles validées par Thomas : 1/3/5 manches, 15/30/60 secondes,
+  X commence chaque manche, dépassement du temps = perte de la manche.
+- Après reprise : compilation et lint de `src/` et `tests/` réussis, 27 tests réussis.
+- Limites distinctes du parcours déjà validé : renvoi de confirmation et rendu
+  mobile pas encore vérifiés en réel, contrôle visuel interrompu par l'outil.
+- Migration de sécurité toujours locale, non appliquée sur Supabase. Aucun
+  commit, push ou merge effectué pendant cette mise à jour du suivi.
+
+## Livraison du jalon 3 validée — 6 novembre 2026
+
+- Thomas valide explicitement le commit, push, merge et l'application de la
+  migration de sécurité. Parcours réel d'inscription/connexion déjà validé.
+- Migration appliquée avec succès via l'API MCP Supabase ; le service attribue
+  la version `20261106142024`. Fichier local renommé pour conserver cet alignement.
+- Droits distants contrôlés : lecture anonyme des profils refusée ; édition du
+  pseudo autorisée, dates protégées ; écriture des résultats et scores refusée ;
+  TRUNCATE et exécution directe du trigger retirés aux clients.
+- Conseiller sécurité relancé : avertissement du trigger corrigé. Les quatre RPC
+  de salle restent volontairement exécutables par les comptes authentifiés ;
+  leurs garde-fous ont été testés localement. Protection des mots de passe compromis
+  toujours désactivée côté Auth, non modifiée par cette migration.
+- Plan, documentation Auth et état de la migration mis à jour. Derniers contrôles
+  applicatifs : 27 tests, compilation et lint réussis.
+- Livraison Git en cours sur `feat/comptes-supabase`. `.env` reste ignoré ; les
+  modifications indépendantes préexistantes ne sont pas incluses.

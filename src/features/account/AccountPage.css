@@ -1,0 +1,34 @@
+.account-page { min-width: 0; padding: 32px 40px; }
+.account-card { max-width: 480px; margin: 48px auto; padding: 28px; border: 1px solid var(--border); border-radius: 12px; background: #07112d; }
+.account-card h1 { font-size: 28px; margin-bottom: 18px; }
+.account-card p { font-size: 14px; line-height: 1.7; color: var(--muted); margin: 16px 0; overflow-wrap: anywhere; }
+.account-card strong { color: #dfe7ff; }
+.account-card form { display: grid; gap: 12px; margin-top: 24px; }
+.account-card label { font-size: 14px; font-weight: 600; }
+.account-card input { width: 100%; min-height: 46px; border: 1px solid var(--border); border-radius: 8px; background: #020b23; color: #dfe7ff; font: inherit; padding: 12px; }
+.account-card .primary-button:disabled { opacity: 0.6; cursor: not-allowed; }
+.account-card .account-success { color: #44dfb3; }
+.account-card .account-error { color: #ff93cb; }
+.account-card .account-note { font-size: 12px; margin-top: 24px; }
+.confirmation-actions { margin-top: 20px; }
+.confirmation-actions p { font-size: 12px; }
+.confirmation-resend { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--cyan); cursor: pointer; }
+.confirmation-resend:disabled { opacity: 0.6; cursor: not-allowed; }
+.account-mode { display: flex; gap: 8px; margin-top: 20px; }
+.account-mode button { flex: 1; padding: 12px 8px; border: 1px solid var(--border); border-radius: 8px; background: #020b23; color: #dfe7ff; cursor: pointer; }
+.account-mode button[aria-pressed='true'] { border-color: var(--cyan); color: var(--cyan); background: #062353; }
+.account-card small { color: var(--muted); line-height: 1.6; font-size: 12px; }
+.profile-form { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.profile-form h2 { margin: 0 0 8px; font-size: 20px; }
+.avatar-picker { min-width: 0; padding: 0; margin: 8px 0; border: 0; }
+.avatar-picker legend { padding: 0; margin-bottom: 12px; font-size: 14px; font-weight: 600; }
+.avatar-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(68px, 1fr)); gap: 8px; }
+.avatar-option { position: relative; display: grid; justify-items: center; gap: 6px; padding: 10px 4px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }
+.avatar-option:has(:checked) { border-color: var(--cyan); background: #062353; }
+.avatar-option:focus-within { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.avatar-option input { position: absolute; opacity: 0; width: 1px; height: 1px; min-height: 0; padding: 0; }
+.avatar-option span { font-size: 11px; }
+.account-link { display: flex; align-items: center; min-height: 44px; margin-top: 24px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; }
+.account-link:hover, .account-link[aria-current='page'] { background: #062353; color: var(--cyan); }
+@media (max-width: 600px) { .account-page { padding: 12px 20px 28px; } .account-card { margin: 24px auto; padding: 20px; } .account-card h1 { font-size: 24px; } }
+@media (max-width: 600px) { .account-card input { font-size: 16px; } }
